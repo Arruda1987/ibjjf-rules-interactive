@@ -1983,27 +1983,7 @@ function mdBuild(d,belt,nogi){
     if(R.notListed.length)it(s,{lead:MD_UI.illOthers(R.notListed.length),muted:true,refs:[mdRef('gcg-7.1')]});
   } else it(s,{lead:MD_UI.colUnres,cls:'md-warn',refs:[mdRef('rb-6.2.3','(M)','&t=table')]});
 
-  /* ---- 4. age / belt specific ---- */
-  s=sec('spec'); const na=[];
-  const wAge=mdAppl(d,15), wWhite=belt==='white';
-  if(wAge||wWhite){ const why=[]; if(wAge)why.push(MD_UI.wWhyAge(ageTxt)); if(wWhite)why.push(MD_UI.wWhyWhite);
-    const bks=[qaItem('rb-6.2.2','W')]; const bb=byId['rb-6.2.2'].blocks; const iw=bb.findIndex(b=>b[0]==='i'&&b[1]==='W'); if(bb[iw+1]&&bb[iw+1][0]==='n')bks.push(bb[iw+1][1]);
-    it(s,{lead:MD_UI.wLead(why.join(' + ')),bks:bks,refs:[mdRef('rb-6.2.2','(W)')]}); R.w=true } else { na.push([MD_UI.naW,mdRef('rb-6.2.2','(W)')]); R.w=false }
-  if(mdEdge(d,15)&&MD_UI.wEdge)it(s,{lead:MD_UI.wEdge,muted:true,refs:[mdRef('rb-6.2.2','(W)'),mdRef('rb-7.2.4')]});
-  if(mdAppl(d,15)){ it(s,{lead:MD_UI.sfLead,bks:[mdText('rb-7.2.4')],refs:[mdRef('rb-7.2.4')]}); R.s=true } else { na.push([MD_UI.naS,mdRef('rb-7.2.4')]); R.s=false }
-  if(mdAppl(d,12)){ it(s,{lead:MD_UI.spLead,bks:[mdText('rb-1.3.8')],refs:[mdRef('rb-1.3.8')]}); R.p=true } else { na.push([MD_UI.naP,mdRef('rb-1.3.8')]); R.p=false }
-  if(mdEdge(d,12)&&MD_UI.spEdge)it(s,{lead:MD_UI.spEdge,muted:true,refs:[mdRef('rb-1.3.8')]});
-  { const hb=mdBlocks('rb-1.3.10'); if(hb.length>=4){ const young=!d.ge||belt==='white'; const bk=mdStar(hb[young?hb.length-2:hb.length-1][1]); R.ho=young?'young':'other';
-      it(s,{lead:MD_UI.hoLead,sub:[(young?MD_UI.hoYoung:MD_UI.hoOther)+' '+bk],refs:[mdRef('rb-1.3.10')]}) } }
-  if(R.illegal.indexOf(19)>=0){ const bb=mdBlocks('rb-6.2.3'); const high=(belt==='brown'||belt==='black'); const rx=high?MD_UI.krRx.high:MD_UI.krRx.low;
-    const hi=bb.findIndex(b=>b[0]==='h'&&rx.test(b[1])); if(hi>=0){ const ps=[]; for(let k=hi+1;k<bb.length&&bb[k][0]==='p';k++)ps.push(bb[k][1]);
-      R.kr=high?'high':'low'; it(s,{lead:MD_UI.krLead,sub:[bb[hi][1].replace(/:$/,'')],bks:ps,refs:[mdRef('rb-6.2.3','(#19)','&t=table&row=19&col='+col)]}) } }
-  if(belt==='white'){ it(s,{lead:MD_UI.whiteLead,bks:[mdText('gcg-5.5')],refs:[mdRef('gcg-5.5')]}) }
-  if(belt==='black'){ it(s,{lead:MD_UI.blackLead,bks:[mdText('gcg-5.7')],refs:[mdRef('gcg-5.7')]}) }
-  if(na.length)it(s,{lead:MD_UI.naLead,muted:true,sub:na.map(a=>a[0]),refs:na.map(a=>a[1])});
-  it(s,{lead:MD_UI.noneSpec,muted:true,refs:[mdRef('gcg-7.1')]});
-
-  /* ---- 5. uniform ---- */
+  /* ---- 4. uniform ---- */
   s=sec('uni');
   if(!nogi){
     const gc=qaGiColors(); it(s,{lead:MD_UI.gi83,bks:[mdText('rb-8.1.3')],refs:[mdRef('rb-8.1.3')]});
