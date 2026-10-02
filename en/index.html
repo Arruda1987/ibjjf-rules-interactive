@@ -413,6 +413,53 @@ table.t tbody tr.qa-row td{background:#fff0c2!important;font-weight:600}
 table.t tbody tr.qa-row td.qa-cell{background:var(--gold)!important;box-shadow:inset 0 0 0 3px var(--navy)}
 @media (max-width:900px){.qa-verdict{font-size:18px}.qa-cols2{columns:1}.qa-mx{font-size:13px}.qa-gimg{max-width:160px}}
 
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:stretch;margin:18px 0 8px}
+.ctas .cta{flex:1 1 360px;margin:0;min-width:0}
+.cta.cta-md{border-color:var(--navy);background:var(--gold-soft)}
+.cta.cta-md:hover{background:var(--gold)}
+.md-intro{max-width:880px;margin:.3em 0 .9em;color:var(--ink);font-size:16.5px;line-height:1.45}
+.md-form{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) auto;gap:12px 16px;align-items:end;padding:14px 16px;background:var(--bg);border:2px solid var(--navy);border-left-width:10px;border-radius:4px;max-width:980px}
+.md-f,.md-fl{display:block;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);margin-bottom:4px}
+.md-fld select{width:100%;min-height:46px;font-size:17px;padding:8px 10px;border:2px solid var(--navy);border-radius:4px;background:#fff;color:var(--ink);font-family:inherit}
+.md-segs{display:flex}
+.md-seg{min-height:46px;padding:8px 18px;font-size:16px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer;font-family:inherit}
+.md-seg+.md-seg{border-left:0}.md-seg:first-child{border-radius:4px 0 0 4px}.md-seg:last-child{border-radius:0 4px 4px 0}
+.md-seg.on{background:var(--navy);color:#fff}
+.md-modenote{max-width:980px;margin:6px 0 0;font-size:13.5px;color:var(--muted)}
+.md-ex{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.md-ex .chip{text-decoration:none;text-transform:none;padding:4px 12px}
+.md-empty{max-width:980px}
+.md-card{max-width:980px;margin:14px 0 20px;border:2px solid var(--navy);border-radius:4px;background:var(--bg)}
+.md-top{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;padding:12px 14px;background:var(--navy)}
+.md-pills{display:flex;gap:6px;flex-wrap:wrap}
+.md-pill{display:inline-block;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.14);color:#fff;font-size:13.5px;font-weight:700}
+.md-pill.gold{background:var(--gold);color:var(--navy)}
+.md-sec{padding:4px 14px 8px;border-top:1px solid var(--line)}
+.md-top+.md-sec{border-top:0}
+.md-h{display:flex;align-items:center;gap:9px;margin:12px 0 6px;font-size:17px;color:var(--navy);text-transform:uppercase;letter-spacing:.3px}
+.md-n{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--navy);display:inline-flex;align-items:center;justify-content:center;font-size:13.5px}
+.md-list{list-style:none;margin:0;padding:0}
+.md-it{padding:8px 0;border-top:1px solid var(--line)}
+.md-it:first-child{border-top:0}
+.md-lead{font-size:16px;line-height:1.4}
+.md-st .md-lead{font-size:18px;font-weight:700;color:var(--navy)}
+.md-mu .md-lead{font-size:14px;color:var(--muted)}
+.md-bk{margin:5px 0 0;padding:0 0 0 18px;font-size:14.5px;color:var(--ink);font-style:italic;line-height:1.4}
+.md-bk li{margin:2px 0}
+.md-sub{font-style:normal;color:var(--muted)}
+.md-moves{list-style:none;margin:8px 0 2px;padding:0;columns:2;column-gap:20px}
+.md-moves li{break-inside:avoid;padding:4px 0;border-bottom:1px dotted var(--line);font-size:14.5px;line-height:1.3}
+.md-moves a{color:var(--ink);text-decoration:none}.md-moves a:hover{text-decoration:underline}
+.md-moves b{color:#b11116}
+.md-rf{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:5px}
+.md-go{font-size:13px;font-weight:700;color:var(--navy);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;white-space:nowrap}
+.md-warn{background:#fff4e0;border-left:5px solid #c47f00;padding-left:10px;margin-top:4px}
+.md-fine{padding:10px 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+#side .side-hot.md .ico{background:var(--gold);color:var(--navy);font-weight:700}
+#side .side-hot.md:hover .ico,#side .side-hot.md.on .ico{background:var(--navy);color:var(--gold)}
+@media (max-width:900px){.md-form{grid-template-columns:1fr;padding:12px}.md-seg{flex:1}.md-segs{width:100%}.md-moves{columns:1}.md-lead{font-size:15.5px}.md-st .md-lead{font-size:17px}.ctas{gap:10px}.ctas .cta{flex-basis:100%}}
+
+#navMain li.pl.md .mdfull{display:none}#navMain li.pl.md .mdico{display:inline;color:var(--gold);font-size:20px;line-height:1}#navMain li.pl.md a:hover .mdico,#navMain li.pl.md a.on .mdico{color:var(--bg)}@media (max-width:1359px){#navMain li.pl.md{display:none}}@media (min-width:1420px){#navMain li.pl.md .mdfull{display:inline}#navMain li.pl.md .mdico{display:none}}
 </style>
 </head>
 <body>
@@ -425,6 +472,7 @@ table.t tbody tr.qa-row td.qa-cell{background:var(--gold)!important;box-shadow:i
     <li class="pl"><a href="#gcg" data-part="gcg">General Competition Guidelines</a></li>
     <li class="pl"><a href="#cfm" data-part="cfm">Competition Format Manual</a></li>
     <li class="pl"><a id="navIllegal" href="#rb-6.2.3&t=table" title="Illegal Moves — table of the 26 illegal moves by division, with photos (6.2.3)">Illegal Moves</a></li>
+    <li class="pl md"><a id="navMyDiv" href="#my-division" aria-label="My Division" title="My Division — pick your age division and belt to see match time, illegal moves, uniform and key rules"><span class="mdfull">My Division</span><span class="mdico">★</span></a></li>
     <li><a id="btnVideos" href="#videos" title="Videos"><span class="ic">▶</span><span class="lab">Videos</span></a></li>
   </ul>
   <div id="searchWrap">
@@ -725,7 +773,8 @@ const QUICK=[
 /* results pinned at the top of search (silent keywords, never displayed: lowercase, no accents; includes Portuguese aliases) */
 const PINS=[
   {h:ILLEGAL_HREF,t:'Illegal Moves',s:'Table of the 26 numbered illegal moves, the divisions where each is a Severe Foul, and photos — 6.2.3 (Technical Fouls – Illegal Moves)',
-   kw:['illegal','illegal moves','illegal move','ilegal','ilegais','golpe ilegal','golpes ilegais','golpe','golpes','technical foul','technical fouls','severe foul','severe fouls','falta gravissima','faltas gravissimas','faltas tecnicas','falta tecnica','tabela de golpes']}];
+   kw:['illegal','illegal moves','illegal move','ilegal','ilegais','golpe ilegal','golpes ilegais','golpe','golpes','technical foul','technical fouls','severe foul','severe fouls','falta gravissima','faltas gravissimas','faltas tecnicas','falta tecnica','tabela de golpes']},
+  {h:'#my-division',t:'My Division',s:'Pick your age division and belt: match time, illegal moves, uniform and the key rules that apply to you, with article numbers',kw:['my division','my category','my age division','my belt','my age','minha categoria','minha divisao']}];
 const stripAcc=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 function pinnedFor(raw){
   const q=stripAcc(norm(raw.trim())).replace(/\s+/g,' '); if(q.length<3)return [];
@@ -746,8 +795,9 @@ function homePage(){
     el('li',null,el('b',null,'Illustrations'),': the PDF figures appear right in the text, cropped and already visible (positions, gestures, 3-athlete bracket, uniform gauge, patch map); the illegal-move photos open when you click a move name in the 6.2.3 table.')));
   const ovv=videoBox('rb');
   const cta=el('a',{class:'cta',href:ILLEGAL_HREF},el('div',null,el('h3',null,'Illegal Moves'),el('p',null,'Table of the 26 numbered illegal moves and their photos — by age/belt division (6.2.3)')),el('span',{class:'btn small go'},'Open table →'));
+  const ctaMd=el('a',{class:'cta cta-md',href:'#my-division'},el('div',null,el('h3',null,MD_UI.homeH),el('p',null,MD_UI.homeP)),el('span',{class:'btn small go'},MD_UI.homeGo)); const ctas=el('div',{class:'ctas'},cta,ctaMd);
   const ql=el('div',{class:'qlinks'},el('b',null,'Shortcuts:'),QUICK.map(q=>el('a',{class:'btn small',href:q.h,title:q.s},q.t)));
-  mount(crumbs(null),hero,cta,ql,ovv?el('div',null,el('h3',{class:'sectitle'},'Video overview'),ovv):null,el('h3',{class:'sectitle'},'Documents'),cards,how,footer(),el('div',{class:'ver'},'Version 6.1 · June 2024 — Rules Book · General Competition Guidelines · Competition Format Manual'));
+  mount(crumbs(null),hero,ctas,ql,ovv?el('div',null,el('h3',{class:'sectitle'},'Video overview'),ovv):null,el('h3',{class:'sectitle'},'Documents'),cards,how,footer(),el('div',{class:'ver'},'Version 6.1 · June 2024 — Rules Book · General Competition Guidelines · Competition Format Manual'));
   setActive(null);
 }
 
@@ -1545,7 +1595,7 @@ function qaCsv(s){ return s?String(s).split(',').filter(Boolean).map(Number):[] 
 function qaHeadH(){ return (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--head-h'))||65) }
 function qaBar(raw,msg){
   const bar=el('div',{class:'note qa-bar',id:'qaBar'},el('b',null,QA_UI.barHl),msg?' · '+msg:'',' · ',
-    raw?el('a',{href:'#search='+encodeURIComponent(raw)},QA_UI.barBack):null,raw?' · ':'',el('a',{href:'#',onclick:e=>{e.preventDefault();qaClear()}},QA_UI.barClear));
+    raw?el('a',{href:mdBackHref(raw)||('#search='+encodeURIComponent(raw))},mdBackHref(raw)?MD_UI.backBar:QA_UI.barBack):null,raw?' · ':'',el('a',{href:'#',onclick:e=>{e.preventDefault();qaClear()}},QA_UI.barClear));
   const old=document.getElementById('qaBar'); if(old)old.remove();
   const hd=root.querySelector('.vhead'); if(hd)hd.after(bar); else root.prepend(bar); return bar;
 }
@@ -1661,6 +1711,7 @@ function buildTree(){
   const side=$('#side'); side.innerHTML='';
   side.append(el('div',{id:'sideTools'},el('button',{type:'button',onclick:()=>{side.querySelectorAll('.tr-open').forEach(x=>x.classList.remove('tr-open'));parts.forEach(p=>{treeRows[p.id].wrap.classList.add('tr-open')})}},'Collapse'),el('button',{type:'button',onclick:()=>{side.querySelectorAll('[data-t]').forEach(x=>x.classList.add('tr-open'))}},'Expand')));
   side.append(el('a',{class:'side-hot',id:'sideIllegal',href:ILLEGAL_HREF},el('span',{class:'ico'},'!'),el('span',null,'Illegal Moves',el('small',null,'table of moves 1–26 + photos'))));
+  side.append(el('a',{class:'side-hot md',id:'sideMyDiv',href:'#my-division'},el('span',{class:'ico'},'★'),el('span',null,MD_UI.side,el('small',null,MD_UI.sideSub))));
   const mk=(n,cls)=>{
     const wrap=el('div',{class:cls,'data-t':n.id}); const tog=el('button',{class:'tr-tog'+(n.children.length?'':' empty'),type:'button','aria-label':'Expand or collapse'},'▸');
     const lab=n.kind==='part'?el('span',null,el('span',{class:'part-tag'},PART_TAG[n.id]),' ',n.en):n.kind==='article'?el('span',null,n.title):el('span',null,el('span',{class:'tr-num'},n.num),n.kind==='sec'?n.title:shortTitle({kind:'x',num:'',text:n.text,id:''},0).slice(0,0)+truncate(n.text,58));
@@ -1680,6 +1731,7 @@ function setActive(n){
   if(activeId&&treeRows[activeId])treeRows[activeId].row.classList.remove('active'); activeId=null;
   $('#btnVideos').classList.toggle('on',location.hash==='#videos');
   { const on=!!n&&n.id==='rb-6.2.3'&&/t=table/.test(location.hash); const a=document.getElementById('sideIllegal'); if(a)a.classList.toggle('on',on); const b=document.getElementById('navIllegal'); if(b)b.classList.toggle('on',on) }
+  mdActive(location.hash.indexOf('#my-division')===0);
   { const pid=n?String(n.id).split(/[-.]/)[0]:null; document.querySelectorAll('#navMain a[data-part]').forEach(a=>a.classList.toggle('on',a.dataset.part===pid)) }
   if(!n)return; const tr=treeRows[n.id]; if(!tr)return; activeId=n.id; tr.row.classList.add('active');
   for(let x=n.parent;x;x=x.parent){const t=treeRows[x.id];if(t){t.wrap.classList.add('tr-open');t.tog.textContent='▾'}}
@@ -1699,6 +1751,7 @@ function route(){
   const qi=$('#q');
   if(!h){ homePage(); document.title='IBJJF Rules Book — Interactive (prototype)'; return }
   if(h==='videos'){ videosPage(); document.title='Videos · IBJJF Rules Book'; return }
+  if(/^(my-division|minha-categoria)(&|$)/.test(h)){ myDivPage(h); return }
   if(h.startsWith('search=')){ const q=h.slice(7); if(document.activeElement!==qi)qi.value=q; $('#qClear').style.display=q?'block':'none'; searchPage(q); document.title='“'+q+'” · search · IBJJF Rules Book'; return }
   let goTable=false; const QP={qa:null};
   h=h.replace(/&qa=([\s\S]*)$/,(m,a)=>{QP.qa=a;return ''});
@@ -1724,6 +1777,274 @@ qi.addEventListener('input',()=>{ $('#qClear').style.display=qi.value?'block':'n
   const h='#search='+encodeURIComponent(v); if(location.hash.startsWith('#search=')){histReplace(h);route()}else location.hash=h},220)});
 qi.addEventListener('keydown',e=>{if(e.key==='Enter'){clearTimeout(st);const v=qi.value.trim();if(!v)return;let a=null;try{a=qaAnswer(v)}catch(x){} if(a&&a.jump&&a.go){location.hash=a.go;qi.blur&&qi.blur()}else location.hash='#search='+encodeURIComponent(v)}});
 $('#qClear').addEventListener('click',()=>{qi.value='';$('#qClear').style.display='none';if(location.hash.startsWith('#search='))histReplace(location.pathname+location.search);route();qi.focus()});
+
+/* ===== My Division — strings (EN) ===== */
+const MD_UI = {
+  lang:'en', incl:false,
+  title:'My Division · IBJJF Rules Book', nav:'My Division', navTitle:'My Division — pick your age division and belt to see match time, illegal moves, uniform and key rules',
+  side:'My Division', sideSub:'time · illegal moves · uniform', h2:'My Division',
+  homeH:'My Division', homeP:'Pick your age division and belt — match time, illegal moves, uniform and the key rules that apply to you, with article numbers', homeGo:'Choose →',
+  intro:'Choose your age division and your belt. This page lists the rules of the IBJJF Rules Book (v6.1) that apply to that combination, each one with its article number and a link to the rule. Everything shown comes from the book text only; where the book is silent, the page says so.',
+  selDiv:'Age division', selBelt:'Belt', selMode:'Event', gi:'Gi', nogi:'No-Gi', ph:'Choose…', beltOther:'Other (youth belt)',
+  modeNote:'In the book, Gi vs No-Gi changes: the Adult brown/black column of table 6.2.3(M) and the uniform rules (8.1.3 vs 8.1.16). Match times are the same (GCG 1.3).',
+  exs:[['pee-wee-2','white'],['adult','blue'],['master-3','black'],['juvenile-1','blue']],
+  examples:'Examples:', empty:'Choose an age division and a belt to see the rules that apply.',
+  ageEq:n=>'age '+n, ageGe:n=>'age '+n+'+',
+  copy:'🔗 Copy link to this result', copied:'Link copied ✓', go:'Go to rule', bookWord:'Book text:',
+  backBar:'← Back to My Division', backTxt:'Back to My Division',
+  secs:{div:'Your division and age',time:'Match time and rest',ill:'Illegal moves — table 6.2.3(M)',spec:'Rules that depend on your age or belt',uni:'Uniform',sco:'Scoring, advantages, penalties and weigh-in',elig:'Belt for this age — what the book says'},
+  uniGi:'Gi', uniNoGi:'No-Gi',
+  /* section 1 */
+  ageCell:(lab,cell)=>[lab+' — the book defines this division as: ',cell],
+  ageEx:(y,d,born)=>d.ge?('Example for a '+y+' tournament: athletes born in '+born+' or earlier.'):('Example for a '+y+' tournament: athletes born in '+born+'.'),
+  ageNote:'GCG 1.1 — how the division is determined:',
+  minAge:'Adult and Master divisions:',
+  /* section 2 */
+  timeLead:(lab,t)=>lab+' regulation match time: '+t,
+  timeAllLead:(lab)=>lab+': the book gives the time by belt — pick a belt to see yours.',
+  timeBelts:(lab)=>'All GCG 1.3 times for '+lab+':',
+  restLead:'Minimum rest between matches (GCG 1.4):',
+  restCalc:(m)=>'= '+m+' min',
+  restRow:(r,calc)=>[r[0].charAt(0)+r[0].slice(1).toLowerCase(),': ',r[1]+(calc||'')],
+  /* section 3 */
+  colLead:(c,h)=>'Table 6.2.3(M), column '+c+' — “'+h+'”',
+  colWhyAge:(a)=>'(your division is '+a+')',
+  colWhyBelt:(b,gi)=>'('+b+' belt'+(gi?', '+gi:'')+')',
+  colUnres:'Pick one of the five belts (White, Blue, Purple, Brown, Black): for Adult and Master divisions table 6.2.3(M) has columns by belt, so a column cannot be chosen without it.',
+  giNote:'Adult brown/black: column 5 is “Adult to Master 7 (brown & black belts) except Adult No Gi” and column 6 is “Adult (brown & black belts) No Gi”. Use the Gi / No-Gi buttons.',
+  illSum:(n,tot,c)=>n+' of the '+tot+' numbered moves are illegal in column '+c+' (Severe Foul). Tap a move to see its row and photo:',
+  illNone:'No move in table 6.2.3(M) is marked illegal in this column.',
+  illOpen:'Open table 6.2.3(M) with all these rows highlighted',
+  illOpenRef:'6.2.3(M)',
+  illPen:'Penalty for a Severe Foul: summary disqualification from the match at the moment of the infraction.',
+  illPenBk:'Item (M) of 6.2.3 — “When an athlete applies a hold prohibited for his/her respective division, as indicated in the following table.”',
+  illStar:'Note ** of the table (applies to move #11):',
+  illOthers:(k)=>'The other '+k+' numbered moves are not listed as illegal in this column. “Not listed” only means that table 6.2.3(M) does not list the move for this column; other rules of the book or the championship guidelines (GCG 7.1) may still apply.',
+  /* section 4 */
+  wLead:(why)=>'Jumping to closed guard is a Serious Foul for you ('+why+') — 6.2.2 (W):',
+  wWhyAge:(a)=>'your division is '+a+', under 15', wWhyWhite:'white belt — all ages',
+  wEdge:'The book says “under-15-year-old division”; your division is age 15, so strictly it is not “under 15”. Check the championship guidelines (GCG 7.1).',
+  sfLead:'Under-15 divisions — penalty sequence (7.2.4):',
+  sfEdge:'7.2.4 is worded “under-15-year-old divisions”; your division is age 15 (strictly not under 15). Check the championship guidelines (GCG 7.1).',
+  spLead:'Under-12 divisions — referee protects the athlete’s spine (1.3.8):',
+  spEdge:'1.3.8 is worded “under-12-years-old division”; your division is age 12 (strictly not under 12). Check the championship guidelines (GCG 7.1).',
+  hoLead:'Single leg with the head on the outside (picture 11 of 6.2.3) — what the referee does for you (1.3.10):',
+  hoYoung:'Your division is juvenile or younger / you are a white belt:', hoOther:'Your division and belt are in “the other divisions”:',
+  hoIdx:[2,3],
+  krLead:'Knee reaping (#19) — how the referee handles it for your belt (6.2.3):',
+  krLow:'For Purple Belt Athletes and below', krHigh:'For Brown and Black Belt athletes',
+  krRx:{low:/purple/i,high:/brown and black/i},
+  whiteLead:'White belt — 5.5:', blackLead:'Black belt — 5.7:',
+  naLead:'Not applicable to your division/belt (the book restricts these to younger divisions or white belts):',
+  naW:'6.2.2 (W) jumping closed guard', naS:'7.2.4 under-15 penalty sequence', naP:'1.3.8 under-12 spine protection',
+  noneSpec:'No other rule in the book is specific to this age/belt combination beyond the lines above. The championship’s published guidelines prevail over the book (GCG 7.1).',
+  /* section 5 */
+  gi83:'Gi colors (8.1.3):', giBelt:'Belt (8.1.9):', patches:'Patches and embroidery (8.3.4 – 8.3.6):', patchesTxt:'Patches only in the authorized regions of the gi (8.3.4); prohibited content (8.3.5); one gi brand tag allowed (8.3.6).',
+  wovenYes:'Woven (pearl weave) gi is mandatory for your division (8.1.1):', wovenNo:'Woven (pearl weave) gi is mandatory only for juvenile, adult and master divisions (8.1.1) — your division is younger; the general fabric rule is:',
+  adultBlack:'Adult black belt — 8.1.5:',
+  female:'Women’s divisions: shirt beneath the gi (8.1.4) and pants length (8.1.8) have their own rules — see those articles.',
+  noKidsUni:'The uniform rules (Article 8) have no other restriction specific to younger divisions.',
+  giNoteMaster:'Master brown/black: column 5 applies to Gi and No-Gi (column 6 is for Adult No-Gi only).',
+  ng116:'No-Gi attire (8.1.16):', ngShirt:(b)=>'Shirt / rash guard for your belt'+(b?' ('+b+')':'')+': it must carry at least 10% of the rank (belt) color; a shirt 100% in the rank color is also allowed.',
+  ngBlack:'Black belts:', ngNoteAll:'Shorts and spats rules for men and women are in the same article (8.1.16).',
+  ngNoGiNot:'The gi color rule (8.1.3) is for the Gi event.',
+  /* section 6 */
+  ptsLead:'Points (2.5.2):', ptsWord:'points', advLead:'Advantages (2.5.3):', penLead:'Penalties (7.2.1) — sequence:',
+  penNote:'Penalties and fouls are in Article 6 (6.1 Disciplinary, 6.2.1 Lack of Combativeness, 6.2.2 Serious Fouls, 6.2.3 Severe Foul).',
+  wiLead:'Weigh-in:', wiNoTol:'The Rules Book text states no weight tolerance (no kg/lb allowance) for the weigh-in; the division weight limits come from the championship’s published guidelines (GCG 7.1).',
+  /* section 7 */
+  eligNone:(d,b)=>'The Rules Book v6.1 has no table of which belts are allowed in each age division, so it states no belt/age restriction for '+d+' + '+b+'. GCG 5.8 and 5.9 mention a minimum age for each belt but do not give the values.',
+  eligWarn:(d,b)=>'Check eligibility: the book does not say whether '+b+' belt is allowed in '+d+'. Confirm the belt/age requirements with IBJJF and the championship guidelines (GCG 7.1).',
+  eligOther:'The Rules Book does not name the youth (colored) belts. Table 6.2.3(M) and the match times for under-16 divisions are not split by belt, so the results below do not depend on the youth belt color.',
+  eligOtherAdult:'The youth belt colors do not appear in the Adult/Master columns of table 6.2.3(M) or in the Adult/Master times. Choose White, Blue, Purple, Brown or Black.',
+  fine:'Built only from the IBJJF Rules Book v6.1 text. Always check the cited rule; the championship’s published guidelines overrule the book (GCG 7.1).',
+  ruleLbl:(id,n)=>(id.indexOf('gcg-')===0?'GCG ':'')+n
+};
+
+/* ===== My Division — engine (same in EN and PT; strings in MD_UI) ===== */
+const MD_BELTS=['white','blue','purple','brown','black','other'];
+const mdNorm=s=>qnz(s).replace(/ (iii|ii|i)$/,(m,r)=>' '+({i:1,ii:2,iii:3})[r]).replace(/ /g,'-');
+const mdSlug=d=>mdNorm(qaDName(d));
+const mdBeltLabel=b=>b==='other'?MD_UI.beltOther:QA_UI.beltName[b];
+function mdDiv(slug){ const s=mdNorm(slug||''); return qaModel().div.filter(d=>mdSlug(d)===s)[0]||null }
+function mdBeltKey(s){ s=qnz(s||''); for(let i=0;i<MD_BELTS.length;i++){ const b=MD_BELTS[i]; if(s===b||(QA_UI.beltName[b]&&qnz(QA_UI.beltName[b])===s))return b } return null }
+function mdParseHash(h){
+  const o={div:null,belt:null,nogi:false}; String(h).split('&').slice(1).forEach(p=>{ const k=p.indexOf('='); if(k<0)return; const key=p.slice(0,k), v=p.slice(k+1);
+    if(key==='div')o.div=mdDiv(v); else if(key==='belt')o.belt=mdBeltKey(v); else if(key==='mode')o.nogi=/^no/i.test(v) });
+  return o;
+}
+const mdHash=(d,belt,nogi)=>'#my-division'+(d?'&div='+mdSlug(d):'')+(belt?'&belt='+belt:'')+(d||belt?'&mode='+(nogi?'nogi':'gi'):'');
+const mdRaw=(d,belt,nogi)=>'md:'+mdSlug(d)+':'+belt+':'+(nogi?'nogi':'gi');
+const mdBackHref=raw=>{ const m=/^md:([^:]+):([^:]+):(gi|nogi)$/.exec(raw||''); return m?'#my-division&div='+m[1]+'&belt='+m[2]+'&mode='+m[3]:null };
+const mdText=id=>{ const n=byId[id]; return n?(n.kind==='rule'?n.text:n.title):null };
+const mdRef=(id,sub,extra)=>{ const n=byId[id]; return n?{l:MD_UI.ruleLbl(id,n.num)+(sub?' '+sub:''),h:qaHref(id,extra||'')}:null };
+const mdBlocks=(id,type)=>{ const n=byId[id]; return n?(n.blocks||[]).filter(b=>!type||b[0]===type):[] };
+const mdStar=t=>String(t).replace(/^\*\s*/,'');
+function mdRowName(r){ return String(M_ROW(r)[2]).replace(/\s*\(\*\*?\)\s*$/,'') }
+function M_ROW(r){ return qaModel().rowBy[r] }
+
+function mdAppl(d,thr){ if(d.ge)return false; return MD_UI.incl?d.age<=thr:d.age<thr }
+function mdEdge(d,thr){ return !MD_UI.incl&&!d.ge&&d.age===thr }
+
+/* the whole result as plain data (so it can be tested) */
+function mdBuild(d,belt,nogi){
+  const M=qaModel(), I=M.div.indexOf(d)+1, lab=qaDName(d), bl=mdBeltLabel(belt), other=belt==='other';
+  const saved=QA_RAW; QA_RAW=mdRaw(d,belt,nogi);
+  const R={d:d,idx:I,label:lab,belt:belt,nogi:nogi,secs:[]};
+  const sec=(k)=>{ const s={k:k,title:MD_UI.secs[k],items:[]}; R.secs.push(s); return s };
+  const it=(s,o)=>{ o.refs=(o.refs||[]).filter(Boolean); s.items.push(o); return o };
+  const ageTxt=d.ge?MD_UI.ageGe(d.age):MD_UI.ageEq(d.age);
+  const tbl13=mdBlocks('gcg-1.3','tbl')[0]; const row13=tbl13?tbl13[1].rows[I-1]:null;
+  R.ageTxt=ageTxt;
+
+  /* ---- 1. division & age ---- */
+  let s=sec('div');
+  it(s,{lead:MD_UI.ageCell(lab,row13?row13[1]:ageTxt).join(''),refs:[mdRef('gcg-1.3','',"&trow="+I+"&tcol=2")]});
+  it(s,{lead:MD_UI.ageNote,bks:[mdText('gcg-1.1')],refs:[mdRef('gcg-1.1')]});
+  { const y=new Date().getFullYear(); R.exBorn=y-d.age; it(s,{lead:MD_UI.ageEx(y,d,y-d.age),muted:true,refs:[mdRef('gcg-1.1')]}) }
+  if(d.ge)it(s,{lead:MD_UI.minAge,bks:[mdText('gcg-1.2')],refs:[mdRef('gcg-1.2')]});
+
+  /* ---- 2. time ---- */
+  s=sec('time'); const x=qaDurRow(d,other?null:belt); let minutes=null;
+  const t13=mdRef('gcg-1.3','',"&trow="+I+"&tcol=3");
+  if(x.txt){ const tt=qmin(x.one?x.one.t:x.txt); minutes=parseInt((String(tt).match(/\d+/)||[])[0],10); R.timeTxt=tt;
+    it(s,{lead:MD_UI.timeLead(lab+(x.one?' · '+bl:''),tt),strong:true,refs:[t13]});
+    if(x.all.length>1)it(s,{lead:MD_UI.timeBelts(lab),muted:true,bks:x.all.map(a=>qmin(a.t)+(a.belts?' — '+a.belts:'')),refs:[t13]}) }
+  else { R.timeTxt=null; it(s,{lead:MD_UI.timeAllLead(lab),bks:x.all.map(a=>qmin(a.t)+(a.belts?' — '+a.belts:'')),refs:[t13]}) }
+  R.minutes=minutes;
+  { const rr=M.rest.map(r=>{ const dbl=/dobro|double/i.test(r[1]); const calc=minutes?(' '+MD_UI.restCalc(dbl?minutes*2:minutes)):''; return MD_UI.restRow(r,calc).join('') });
+    R.restTxt=rr; it(s,{lead:MD_UI.restLead,bks:rr,refs:[mdRef('gcg-1.4')]}) }
+
+  /* ---- 3. illegal moves ---- */
+  s=sec('ill'); let cols=[];
+  if(!(d.ge&&other))cols=qaColsFor({belt:other?'kid':belt,nogi:nogi},{rows:[d]});
+  R.cols=cols; const col=cols.length===1?cols[0]:null; R.col=col; R.illegal=[]; R.notListed=[];
+  if(col){
+    const head=M.cols[col-1].head; R.colHead=head;
+    M.rows.forEach(r=>{ (qaDot(r,col)?R.illegal:R.notListed).push(r[1]) });
+    let why=d.ge?MD_UI.colWhyBelt(bl,(nogi?MD_UI.nogi:MD_UI.gi)):MD_UI.colWhyAge(ageTxt);
+    it(s,{lead:MD_UI.colLead(col,head)+' '+why,strong:true,refs:[mdRef('rb-6.2.3','(M)','&t=table&col='+col)]});
+    if(d.ge&&(belt==='brown'||belt==='black'))it(s,{lead:d.fam===5?MD_UI.giNote:MD_UI.giNoteMaster,muted:true,refs:[mdRef('rb-6.2.3','(M)','&t=table&col='+col)]});
+    if(R.illegal.length){
+      const mv=R.illegal.map(n=>({n:n,name:mdRowName(n),h:qaTblHref([n],null,col)}));
+      it(s,{lead:MD_UI.illSum(R.illegal.length,M.rows.length,col),moves:mv,refs:[{l:MD_UI.illOpenRef,h:qaTblHref(R.illegal,null,col),t:MD_UI.illOpen}],cls:'md-ill'});
+    } else it(s,{lead:MD_UI.illNone,refs:[mdRef('rb-6.2.3','(M)','&t=table&col='+col)]});
+    it(s,{lead:MD_UI.illPen,bks:[MD_UI.illPenBk],refs:[mdRef('rb-7.1'),mdRef('rb-6.2.3','(M)')]});
+    if(R.illegal.indexOf(11)>=0){ let st=null; mdBlocks('rb-6.2.3').forEach(b=>{ if((b[0]==='p'||b[0]==='n')&&/\*\*\s/.test(b[1])&&!st)st=b[1].slice(b[1].indexOf('**')) });
+      if(st)it(s,{lead:MD_UI.illStar,bks:[st],refs:[mdRef('rb-6.2.3','(**)','&t=table&row=11&col='+col)]}) }
+    if(R.notListed.length)it(s,{lead:MD_UI.illOthers(R.notListed.length),muted:true,refs:[mdRef('gcg-7.1')]});
+  } else it(s,{lead:other&&d.ge?MD_UI.eligOtherAdult:MD_UI.colUnres,cls:'md-warn',refs:[mdRef('rb-6.2.3','(M)','&t=table')]});
+
+  /* ---- 4. age / belt specific ---- */
+  s=sec('spec'); const na=[];
+  const wAge=mdAppl(d,15), wWhite=belt==='white';
+  if(wAge||wWhite){ const why=[]; if(wAge)why.push(MD_UI.wWhyAge(ageTxt)); if(wWhite)why.push(MD_UI.wWhyWhite);
+    const bks=[qaItem('rb-6.2.2','W')]; const bb=byId['rb-6.2.2'].blocks; const iw=bb.findIndex(b=>b[0]==='i'&&b[1]==='W'); if(bb[iw+1]&&bb[iw+1][0]==='n')bks.push(bb[iw+1][1]);
+    it(s,{lead:MD_UI.wLead(why.join(' + ')),bks:bks,refs:[mdRef('rb-6.2.2','(W)')]}); R.w=true } else { na.push([MD_UI.naW,mdRef('rb-6.2.2','(W)')]); R.w=false }
+  if(mdEdge(d,15)&&MD_UI.wEdge)it(s,{lead:MD_UI.wEdge,muted:true,refs:[mdRef('rb-6.2.2','(W)'),mdRef('rb-7.2.4')]});
+  if(mdAppl(d,15)){ it(s,{lead:MD_UI.sfLead,bks:[mdText('rb-7.2.4')],refs:[mdRef('rb-7.2.4')]}); R.s=true } else { na.push([MD_UI.naS,mdRef('rb-7.2.4')]); R.s=false }
+  if(mdAppl(d,12)){ it(s,{lead:MD_UI.spLead,bks:[mdText('rb-1.3.8')],refs:[mdRef('rb-1.3.8')]}); R.p=true } else { na.push([MD_UI.naP,mdRef('rb-1.3.8')]); R.p=false }
+  if(mdEdge(d,12)&&MD_UI.spEdge)it(s,{lead:MD_UI.spEdge,muted:true,refs:[mdRef('rb-1.3.8')]});
+  { const hb=mdBlocks('rb-1.3.10'); if(hb.length>=4){ const young=!d.ge||belt==='white'; const bk=mdStar(hb[young?hb.length-2:hb.length-1][1]); R.ho=young?'young':'other';
+      it(s,{lead:MD_UI.hoLead,sub:[(young?MD_UI.hoYoung:MD_UI.hoOther)+' '+bk],refs:[mdRef('rb-1.3.10')]}) } }
+  if(R.illegal.indexOf(19)>=0){ const bb=mdBlocks('rb-6.2.3'); const high=(belt==='brown'||belt==='black'); const rx=high?MD_UI.krRx.high:MD_UI.krRx.low;
+    const hi=bb.findIndex(b=>b[0]==='h'&&rx.test(b[1])); if(hi>=0){ const ps=[]; for(let k=hi+1;k<bb.length&&bb[k][0]==='p';k++)ps.push(bb[k][1]);
+      R.kr=high?'high':'low'; it(s,{lead:MD_UI.krLead,sub:[bb[hi][1].replace(/:$/,'')],bks:ps,refs:[mdRef('rb-6.2.3','(#19)','&t=table&row=19&col='+col)]}) } }
+  if(belt==='white'){ it(s,{lead:MD_UI.whiteLead,bks:[mdText('gcg-5.5')],refs:[mdRef('gcg-5.5')]}) }
+  if(belt==='black'){ it(s,{lead:MD_UI.blackLead,bks:[mdText('gcg-5.7')],refs:[mdRef('gcg-5.7')]}) }
+  if(na.length)it(s,{lead:MD_UI.naLead,muted:true,sub:na.map(a=>a[0]),refs:na.map(a=>a[1])});
+  it(s,{lead:MD_UI.noneSpec,muted:true,refs:[mdRef('gcg-7.1')]});
+
+  /* ---- 5. uniform ---- */
+  s=sec('uni');
+  if(!nogi){
+    const gc=qaGiColors(); it(s,{lead:MD_UI.gi83,bks:[mdText('rb-8.1.3')],refs:[mdRef('rb-8.1.3')]});
+    const woven=d.age>=16; R.woven=woven;
+    it(s,{lead:woven?MD_UI.wovenYes:MD_UI.wovenNo,bks:[mdText('rb-8.1.1')],refs:[mdRef('rb-8.1.1')]});
+    it(s,{lead:MD_UI.giBelt,bks:[qaFirst(mdText('rb-8.1.9'))],refs:[mdRef('rb-8.1.9')]});
+    it(s,{lead:MD_UI.patches,bks:[MD_UI.patchesTxt],refs:[mdRef('rb-8.3.4'),mdRef('rb-8.3.5'),mdRef('rb-8.3.6')]});
+    if(d.fam===5&&belt==='black'){ R.adultBlack=true; it(s,{lead:MD_UI.adultBlack,bks:[mdText('rb-8.1.5')],refs:[mdRef('rb-8.1.5')]}) }
+  } else {
+    const ps=mdBlocks('rb-8.1.16','p'); const nn=mdBlocks('rb-8.1.16','n');
+    it(s,{lead:MD_UI.ng116+' '+MD_UI.ngShirt(other?null:bl),bks:[ps[0]?ps[0][1]:null].filter(Boolean),refs:[mdRef('rb-8.1.16')]});
+    if(belt==='black'&&nn[0]){ R.ngBlack=true; it(s,{lead:MD_UI.ngBlack,bks:[nn[0][1]],refs:[mdRef('rb-8.1.16')]}) }
+    it(s,{lead:MD_UI.ngNoteAll,muted:true,refs:[mdRef('rb-8.1.16')]});
+    it(s,{lead:MD_UI.ngNoGiNot,muted:true,refs:[mdRef('rb-8.1.3')]});
+  }
+  if(!nogi)it(s,{lead:MD_UI.female,muted:true,refs:[mdRef('rb-8.1.4'),mdRef('rb-8.1.8')]});
+  it(s,{lead:MD_UI.noKidsUni,muted:true,refs:[mdRef(nogi?'rb-8.1.16':'rb-8.1.1')]});
+
+  /* ---- 6. scoring ---- */
+  s=sec('sco'); const grp={}; M.pts.forEach(p=>{ (grp[p.n]=grp[p.n]||[]).push(p.label) });
+  R.pts=Object.keys(grp).map(Number).sort((a,b)=>b-a).map(n=>({n:n,labels:grp[n]}));
+  it(s,{lead:MD_UI.ptsLead,bks:R.pts.map(g=>g.n+' '+MD_UI.ptsWord+': '+g.labels.join(', ')),refs:[mdRef('rb-2.5.2','','&trow=1')]});
+  it(s,{lead:MD_UI.advLead,bks:[mdText('rb-2.5.3')],refs:[mdRef('rb-2.5.3')]});
+  { const pb=mdBlocks('rb-7.2.1','b').map(b=>b[1]); it(s,{lead:MD_UI.penLead,bks:pb,refs:[mdRef('rb-7.2.1')]}) }
+  it(s,{lead:MD_UI.penNote,muted:true,refs:[mdRef('rb-6.1'),mdRef('rb-6.2.1'),mdRef('rb-6.2.2'),mdRef('rb-6.2.3')]});
+  { const bks=[mdText('rb-8.3.1'),mdText('rb-8.3.3')]; if(!qaHasText(QA_UI.tolRx)){ R.noTol=true; bks.push(MD_UI.wiNoTol) }
+    it(s,{lead:MD_UI.wiLead,bks:bks,refs:[mdRef('rb-8.3.1'),mdRef('rb-8.3.3')]}) }
+
+  /* ---- 7. belt eligibility note ---- */
+  s=sec('elig');
+  it(s,{lead:MD_UI.eligNone(lab,bl),bks:[mdText('gcg-5.8'),mdText('gcg-5.9')],refs:[mdRef('gcg-5.8'),mdRef('gcg-5.9')]});
+  if(other&&!d.ge)it(s,{lead:MD_UI.eligOther,refs:[mdRef('gcg-1.3'),mdRef('rb-6.2.3','(M)')]});
+  if(belt!=='white'&&!other&&!d.ge&&d.age<18){ R.eligWarn=true; it(s,{lead:MD_UI.eligWarn(lab,bl),cls:'md-warn',refs:[mdRef('gcg-5.8'),mdRef('gcg-5.9'),mdRef('gcg-7.1')]}) }
+  QA_RAW=saved; return R;
+}
+
+/* ===== My Division — page ===== */
+function mdCopy(url){
+  const done=()=>toast(MD_UI.copied);
+  function fb(){ const ta=el('textarea',{style:'position:fixed;opacity:0'}); ta.value=url; document.body.append(ta); ta.select(); try{document.execCommand('copy');done()}catch(e){prompt('Link:',url)} ta.remove() }
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(url).then(done,fb); else fb();
+}
+function mdItemNode(o){
+  const li=el('li',{class:'md-it'+(o.muted?' md-mu':'')+(o.strong?' md-st':'')+(o.cls?' '+o.cls:'')});
+  li.append(el('div',{class:'md-lead'},o.lead));
+  if(o.moves){ const ol=el('ol',{class:'md-moves'}); o.moves.forEach(m=>{ const a=el('a',{href:m.h},el('b',null,'#'+m.n),' '+m.name); ol.append(el('li',null,a)) }); li.append(ol) }
+  [o.sub,o.bks].forEach((arr,k)=>{ if(arr&&arr.length){ const ul=el('ul',{class:'md-bk'+(k?'':' md-sub')}); arr.forEach(t=>ul.append(el('li',null,t))); li.append(ul) } });
+  if(o.refs&&o.refs.length){ const rf=el('div',{class:'md-rf'}); o.refs.forEach(r=>rf.append(el('a',{class:'md-go',href:r.h,title:MD_UI.go+' '+r.l},(r.t?r.t:MD_UI.go+' '+r.l)+' →'))); li.append(rf) }
+  return li;
+}
+function mdResultNode(R){
+  const c=el('section',{class:'md-card','aria-live':'polite'});
+  const pills=el('div',{class:'md-pills'},el('span',{class:'md-pill gold'},R.label+' · '+R.ageTxt),el('span',{class:'md-pill'},mdBeltLabel(R.belt)),el('span',{class:'md-pill'},R.nogi?MD_UI.nogi:MD_UI.gi));
+  if(R.col)pills.append(el('span',{class:'md-pill'},'6.2.3(M) · '+R.col));
+  if(R.timeTxt)pills.append(el('span',{class:'md-pill'},'⏱ '+R.timeTxt));
+  c.append(el('div',{class:'md-top'},pills,el('button',{class:'btn small',type:'button',onclick:()=>mdCopy(location.href.split('#')[0]+mdHash(R.d,R.belt,R.nogi))},MD_UI.copy)));
+  R.secs.forEach((s,i)=>{ const sc=el('div',{class:'md-sec md-s-'+s.k}); sc.append(el('h3',{class:'md-h'},el('span',{class:'md-n'},String(i+1)),s.title+(s.k==='uni'?' — '+(R.nogi?MD_UI.uniNoGi:MD_UI.uniGi):'')));
+    const ul=el('ul',{class:'md-list'}); s.items.forEach(o=>ul.append(mdItemNode(o))); sc.append(ul); c.append(sc) });
+  c.append(el('div',{class:'md-fine'},MD_UI.fine));
+  return c;
+}
+function mdActive(on){ ['navMyDiv','sideMyDiv'].forEach(id=>{ const a=document.getElementById(id); if(a)a.classList.toggle('on',on) }) }
+function myDivPage(h){
+  const st=mdParseHash(h); const M=qaModel(); let selD=st.div, selB=st.belt, nogi=st.nogi;
+  const out=el('div',{id:'mdOut'});
+  const sd=el('select',{id:'mdDiv','aria-label':MD_UI.selDiv}); sd.append(el('option',{value:''},MD_UI.ph));
+  let grp=null,gf=null; M.div.forEach(d=>{ if(gf!==d.fam||!grp){ gf=d.fam; grp=el('optgroup',{label:qtitle(d.base)}); sd.append(grp) } grp.append(el('option',{value:mdSlug(d)},qaDName(d)+' · '+(d.ge?MD_UI.ageGe(d.age):MD_UI.ageEq(d.age)))) });
+  const sb=el('select',{id:'mdBelt','aria-label':MD_UI.selBelt}); sb.append(el('option',{value:''},MD_UI.ph)); MD_BELTS.forEach(b=>sb.append(el('option',{value:b},mdBeltLabel(b))));
+  const bGi=el('button',{type:'button',id:'mdGi',class:'md-seg'},MD_UI.gi), bNo=el('button',{type:'button',id:'mdNoGi',class:'md-seg'},MD_UI.nogi);
+  const syncSeg=()=>{ bGi.classList.toggle('on',!nogi); bNo.classList.toggle('on',nogi); bGi.setAttribute('aria-pressed',String(!nogi)); bNo.setAttribute('aria-pressed',String(nogi)) };
+  const update=(push)=>{ const dv=sd.value?mdDiv(sd.value):null; selD=dv; selB=sb.value||null; syncSeg();
+    histReplace(mdHash(selD,selB,nogi)); out.innerHTML='';
+    if(selD&&selB&&innerWidth<=900)setTimeout(()=>{ const t=out.getBoundingClientRect().top; if(t>innerHeight*0.55)window.scrollBy({top:t-80,behavior:'smooth'}) },60);
+    if(selD&&selB)out.append(mdResultNode(mdBuild(selD,selB,nogi))); else out.append(el('div',{class:'note md-empty'},MD_UI.empty)) };
+  sd.addEventListener('change',()=>update()); sb.addEventListener('change',()=>update());
+  bGi.addEventListener('click',()=>{ nogi=false; update() }); bNo.addEventListener('click',()=>{ nogi=true; update() });
+  if(selD)sd.value=mdSlug(selD); if(selB)sb.value=selB;
+  const lab=(t,f)=>el('label',{class:'md-f','for':f},el('span',null,t));
+  const form=el('div',{class:'md-form'},
+    el('div',{class:'md-fld'},lab(MD_UI.selDiv,'mdDiv'),sd),el('div',{class:'md-fld'},lab(MD_UI.selBelt,'mdBelt'),sb),
+    el('div',{class:'md-fld md-mode'},el('span',{class:'md-fl'},MD_UI.selMode),el('div',{class:'md-segs',role:'group','aria-label':MD_UI.selMode},bGi,bNo)));
+  const ex=el('div',{class:'md-ex'},el('b',null,MD_UI.examples+' '));
+  MD_UI.exs.forEach(e=>{ const d=mdDiv(e[0]); if(!d)return; ex.append(el('a',{class:'chip',href:mdHash(d,e[1],false)},qaDName(d)+' · '+mdBeltLabel(e[1]))) });
+  mount(setCrumbsFor([{t:MD_UI.nav}]),el('div',{class:'vhead'},el('h2',null,MD_UI.h2)),el('p',{class:'md-intro'},MD_UI.intro),form,el('div',{class:'md-modenote'},MD_UI.modeNote),ex,out,footer());
+  syncSeg(); setActive(null); mdActive(true);
+  if(selD&&selB)out.append(mdResultNode(mdBuild(selD,selB,nogi))); else out.append(el('div',{class:'note md-empty'},MD_UI.empty));
+  document.title=MD_UI.title;
+}
+window.__MYDIV={build:mdBuild,divs:()=>qaModel().div,slug:mdSlug,hash:mdHash,parse:mdParseHash,belts:MD_BELTS,ui:MD_UI};
 
 buildTree(); route();
 window.__IBJJF = {byId,counts,videoMap,playlist,search};
