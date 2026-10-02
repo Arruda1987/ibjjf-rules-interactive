@@ -256,9 +256,6 @@ html:not(.js) #main{margin-left:0}
 .card h3{margin:0 0 4px;color:var(--navy);font-size:18px;font-weight:700;text-transform:uppercase}
 .card small{color:var(--muted)}
 .card ul{margin:.5em 0 0;padding-left:1.1em;font-size:15px}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
-.stat{background:var(--soft);border-radius:4px;padding:8px 14px;font-size:14.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
-.stat b{display:block;font-size:24px;color:var(--navy);font-weight:700}
 .howto{background:var(--soft);border-radius:4px;padding:6px 20px 12px;margin-top:10px}
 .howto li{margin:.3em 0}
 /* ===== atalhos: Golpes ilegais / quick links ===== */
@@ -739,8 +736,6 @@ function homePage(){
   const hero=el('div',{class:'hero'},el('h2',null,'Livro de Regras CBJJ ',el('span',{class:'gold'},'Interativo')),
     el('p',null,'Versão 6.1 · junho de 2024 — Livro de Regras · Regulamento Geral de Competições · Manual de Formatação de Competições'),
     el('p',null,'Navegue pelo índice à esquerda, use a busca no topo ou assista aos ',el('a',{href:'#videos',style:'color:var(--gold)'},'vídeos tutoriais (em inglês)'),'.'));
-  const stats=el('div',{class:'stats'},
-    [[counts.articles,'Artigos'],[counts.sections,'Seções (x.y)'],[counts.rules,'Subitens (x.y.z…)'],[Object.keys(videoMap).length,'Seções com vídeo'],[playlist.length,'Vídeos tutoriais']].map(([a,b])=>el('div',{class:'stat'},el('b',null,String(a)),b)));
   const cards=el('div',{class:'cards'},parts.map(p=>el('a',{class:'card',href:'#'+p.id},
     el('h3',null,el('span',{class:'part-tag'},PART_TAG[p.id]),' ',p.en),el('small',null,'PDF pp. '+p.pages[0]+'–'+p.pages[1]),
     el('ul',null,p.children.map(a=>el('li',null,a.title.replace(/^ARTIGO \d+\s*[º°]?\s*[–-]\s*/,'Art. '+a.num+'º – '))) ))));
@@ -754,7 +749,7 @@ function homePage(){
   const ovv=videoBox('rb');
   const cta=el('a',{class:'cta',href:ILLEGAL_HREF},el('span',{class:'ico'},'!'),el('div',null,el('h3',null,'Golpes ilegais'),el('p',null,'Tabela dos 26 golpes ilegais numerados e suas fotos — por categoria de idade/faixa (6.2.3)')),el('span',{class:'btn small go'},'Abrir tabela →'));
   const ql=el('div',{class:'qlinks'},el('b',null,'Atalhos:'),QUICK.map(q=>el('a',{class:'btn small',href:q.h,title:q.s},q.t)));
-  mount(crumbs(null),hero,cta,ql,stats,ovv?el('div',null,el('h3',{class:'sectitle'},'Vídeo de visão geral'),ovv):null,el('h3',{class:'sectitle'},'Documentos'),cards,how,footer());
+  mount(crumbs(null),hero,cta,ql,ovv?el('div',null,el('h3',{class:'sectitle'},'Vídeo de visão geral'),ovv):null,el('h3',{class:'sectitle'},'Documentos'),cards,how,footer());
   setActive(null);
 }
 

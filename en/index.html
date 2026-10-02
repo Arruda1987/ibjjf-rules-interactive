@@ -256,9 +256,6 @@ html:not(.js) #main{margin-left:0}
 .card h3{margin:0 0 4px;color:var(--navy);font-size:18px;font-weight:700;text-transform:uppercase}
 .card small{color:var(--muted)}
 .card ul{margin:.5em 0 0;padding-left:1.1em;font-size:15px}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
-.stat{background:var(--soft);border-radius:4px;padding:8px 14px;font-size:14.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
-.stat b{display:block;font-size:24px;color:var(--navy);font-weight:700}
 .howto{background:var(--soft);border-radius:4px;padding:6px 20px 12px;margin-top:10px}
 .howto li{margin:.3em 0}
 /* ===== atalhos: Golpes ilegais / quick links ===== */
@@ -737,8 +734,6 @@ function homePage(){
   const hero=el('div',{class:'hero'},el('h2',null,'IBJJF Rules Book ',el('span',{class:'gold'},'Interactive')),
     el('p',null,'Version 6.1 · June 2024 — Rules Book · General Competition Guidelines · Competition Format Manual'),
     el('p',null,'Browse the index on the left, use the search box at the top, or watch the ',el('a',{href:'#videos',style:'color:var(--gold)'},'tutorial videos'),'.'));
-  const stats=el('div',{class:'stats'},
-    [[counts.articles,'Articles'],[counts.sections,'Sections (x.y)'],[counts.rules,'Sub-items (x.y.z…)'],[Object.keys(videoMap).length,'Sections with video'],[playlist.length,'Tutorial videos']].map(([a,b])=>el('div',{class:'stat'},el('b',null,String(a)),b)));
   const cards=el('div',{class:'cards'},parts.map(p=>el('a',{class:'card',href:'#'+p.id},
     el('h3',null,el('span',{class:'part-tag'},PART_TAG[p.id]),' ',p.en),el('small',null,'PDF pp. '+p.pages[0]+'–'+p.pages[1]),
     el('ul',null,p.children.map(a=>el('li',null,a.title.replace(/^ARTICLE \d+\s*[–-]\s*/,'Art. '+a.num+' – '))) ))));
@@ -752,7 +747,7 @@ function homePage(){
   const ovv=videoBox('rb');
   const cta=el('a',{class:'cta',href:ILLEGAL_HREF},el('span',{class:'ico'},'!'),el('div',null,el('h3',null,'Illegal Moves'),el('p',null,'Table of the 26 numbered illegal moves and their photos — by age/belt division (6.2.3)')),el('span',{class:'btn small go'},'Open table →'));
   const ql=el('div',{class:'qlinks'},el('b',null,'Shortcuts:'),QUICK.map(q=>el('a',{class:'btn small',href:q.h,title:q.s},q.t)));
-  mount(crumbs(null),hero,cta,ql,stats,ovv?el('div',null,el('h3',{class:'sectitle'},'Video overview'),ovv):null,el('h3',{class:'sectitle'},'Documents'),cards,how,footer());
+  mount(crumbs(null),hero,cta,ql,ovv?el('div',null,el('h3',{class:'sectitle'},'Video overview'),ovv):null,el('h3',{class:'sectitle'},'Documents'),cards,how,footer());
   setActive(null);
 }
 
