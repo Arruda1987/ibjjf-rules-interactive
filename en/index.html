@@ -459,6 +459,11 @@ table.t tbody tr.qa-row td.qa-cell{background:var(--gold)!important;box-shadow:i
 #side .side-hot.md:hover .ico,#side .side-hot.md.on .ico{background:var(--navy);color:var(--gold)}
 @media (max-width:900px){.md-form{grid-template-columns:1fr;padding:12px}.md-seg{flex:1}.md-segs{width:100%}.md-moves{columns:1}.md-lead{font-size:15.5px}.md-st .md-lead{font-size:17px}.ctas{gap:10px}.ctas .cta{flex-basis:100%}}
 
+.md-note{max-width:980px;margin:8px 0 0;font-size:14px;color:var(--muted);min-height:1px}
+.md-note.md-nw{color:#7a4a00;background:#fff4e0;border-left:5px solid #c47f00;padding:8px 10px;font-weight:600}
+.md-clear{border:0;background:none;color:var(--navy);text-decoration:underline;font-size:13.5px;cursor:pointer;padding:6px 4px;font-family:inherit}
+.md-src{text-decoration:none;color:var(--muted);font-weight:700;cursor:help}
+
 #navMain li.pl.md .mdfull{display:none}#navMain li.pl.md .mdico{display:inline;color:var(--gold);font-size:20px;line-height:1}#navMain li.pl.md a:hover .mdico,#navMain li.pl.md a.on .mdico{color:var(--bg)}@media (max-width:1359px){#navMain li.pl.md{display:none}}@media (min-width:1420px){#navMain li.pl.md .mdfull{display:inline}#navMain li.pl.md .mdico{display:none}}
 </style>
 </head>
@@ -1784,7 +1789,7 @@ const MD_UI = {
   title:'My Division · IBJJF Rules Book', nav:'My Division', navTitle:'My Division — pick your age division and belt to see match time, illegal moves, uniform and key rules',
   side:'My Division', sideSub:'time · illegal moves · uniform', h2:'My Division',
   homeH:'My Division', homeP:'Pick your age division and belt — match time, illegal moves, uniform and the key rules that apply to you, with article numbers', homeGo:'Choose →',
-  intro:'Choose your age division and your belt. This page lists the rules of the IBJJF Rules Book (v6.1) that apply to that combination, each one with its article number and a link to the rule. Everything shown comes from the book text only; where the book is silent, the page says so.',
+  intro:'Choose your age division and your belt. This page lists the rules of the IBJJF Rules Book (v6.1) that apply to that combination, each one with its article number and a link to the rule. Everything shown comes from the Rules Book text and the IBJJF Graduation book (belt ages) only; where the book is silent, the page says so.',
   selDiv:'Age division', selBelt:'Belt', selMode:'Event', gi:'Gi', nogi:'No-Gi', ph:'Choose…', beltOther:'Other (youth belt)',
   modeNote:'In the book, Gi vs No-Gi changes: the Adult brown/black column of table 6.2.3(M) and the uniform rules (8.1.3 vs 8.1.16). Match times are the same (GCG 1.3).',
   exs:[['pee-wee-2','white'],['adult','blue'],['master-3','black'],['juvenile-1','blue']],
@@ -1792,7 +1797,7 @@ const MD_UI = {
   ageEq:n=>'age '+n, ageGe:n=>'age '+n+'+',
   copy:'🔗 Copy link to this result', copied:'Link copied ✓', go:'Go to rule', bookWord:'Book text:',
   backBar:'← Back to My Division', backTxt:'Back to My Division',
-  secs:{div:'Your division and age',time:'Match time and rest',ill:'Illegal moves — table 6.2.3(M)',spec:'Rules that depend on your age or belt',uni:'Uniform',sco:'Scoring, advantages, penalties and weigh-in',elig:'Belt for this age — what the book says'},
+  secs:{div:'Your division and age',time:'Match time and rest',ill:'Illegal moves — table 6.2.3(M)',spec:'Rules that depend on your age or belt',uni:'Uniform',sco:'Scoring, advantages, penalties and weigh-in',elig:'Belt for this age — Graduation book'},
   uniGi:'Gi', uniNoGi:'No-Gi',
   /* section 1 */
   ageCell:(lab,cell)=>[lab+' — the book defines this division as: ',cell],
@@ -1857,20 +1862,61 @@ const MD_UI = {
   eligWarn:(d,b)=>'Check eligibility: the book does not say whether '+b+' belt is allowed in '+d+'. Confirm the belt/age requirements with IBJJF and the championship guidelines (GCG 7.1).',
   eligOther:'The Rules Book does not name the youth (colored) belts. Table 6.2.3(M) and the match times for under-16 divisions are not split by belt, so the results below do not depend on the youth belt color.',
   eligOtherAdult:'The youth belt colors do not appear in the Adult/Master columns of table 6.2.3(M) or in the Adult/Master times. Choose White, Blue, Purple, Brown or Black.',
-  fine:'Built only from the IBJJF Rules Book v6.1 text. Always check the cited rule; the championship’s published guidelines overrule the book (GCG 7.1).',
+  fine:'Built only from the IBJJF Rules Book v6.1 and the IBJJF General System of Graduation (June 2026; belt ages, Art. 2). Always check the cited rule; the championship’s published guidelines overrule the book (GCG 7.1).',
+  belts:{white:'White',grey:'Grey',yellow:'Yellow',orange:'Orange',green:'Green',blue:'Blue',purple:'Purple',brown:'Brown',black:'Black'},
+  gradShort:'Graduation book', pg:'p.', gradName:'IBJJF General System of Graduation (June 2026)',
+  gradQ:a=>a,
+  gradAge:(lab,ch)=>lab+' — age by birth year in the Graduation book (current year − birth year): '+ch,
+  gradAgeBk:['The athlete’s age in the IBJJF system is determined by the completed or to be completed age in the current year, based on the following formula: current year - birth year = age of the athlete.'],
+  validLead:(lab,age,list)=>'Belts valid for '+lab+' ('+age+'): '+list+'.',
+  beltRuleLead:(bl)=>bl+' belt — minimum age:',
+  black18:'Black belt in the Adult division: at age 18 it is allowed only for athletes who won the Adult World Champion title at Brown Belt. The book gives no other minimum age for black belt; the division alone (Adult = 18–29) does not show whether this condition is met.',
+  turn16:'Juvenile 1 (age 16) — belt change in the year the athlete turns 16:',
+  compLead:'Competing under the registered belt (Rules Book, GCG 5.8 and 5.9):',
+  redNote:'Red belts exist in the Graduation book (Masters) but the Rules Book has no separate time, rule or table 6.2.3(M) column for them, so they are not offered here:',
+  gq:{
+    white:['White Belt: Any age.'],
+    grey:['Group Grey (Grey and White Belt, Grey Belt, Grey and Black Belt): Ages 4 to 15 years old. (Mighty-Mite 1 to Teen 3)'],
+    yellow:['Group Yellow (Yellow and White Belt, Yellow Belt, Yellow and Black Belt): Ages 7 to 15 years old. (Pee-Wee 1 to Teen 3)'],
+    orange:['Group Orange (Orange and White Belt, Orange Belt, Orange and Black Belt): Ages 10 to 15 years old. (Junior 1 to Teen 3)'],
+    green:['Group Green (Green and White Belt, Green Belt, Green and Black Belt): Ages 13 to 15 years old. (Teen 1 to Teen 3)'],
+    blue:['Blue Belt: 16 years old or older. (Juvenile 1 and up)'],
+    purple:['Purple Belt: 16 years old or older. (Juvenile 1 and up)'],
+    brown:['Brown Belt: 18 years old or older. (Adult and Masters)'],
+    black:['Black Belt: 18 years old or older. (Adult and Masters)*','*18 years only for athletes who have won the Adult World Champion title at Brown Belt.'],
+    blackNote:['Athletes from 18 years old - White Belt to Black Belt (Adult and Masters), with Black Belt promotion at 18 years old allowed only for athletes who have won the Adult World Champion title at Brown Belt.'],
+    turn16:['Athletes turning 16 years old (Juvenile 1) in the current year must follow the belt system in Article 1.2. They must be promoted to the new rank which is determined by the previous rank:','White Belt: may remain in White Belt;','Grey Belt, Yellow Belt, Orange Belt: must turn to Blue Belt;','Green Belt: may turn to Blue or Purple Belt according to the Professor’s decision.'],
+    red:['Red and Black Belt: 49 years old or older. (Masters)','Red and White Belt: 56 years old or older. (Masters)','Red Belt: 66 years old or older. (Masters)']},
+  selBeltAll:'Choose…', clear:'Clear selection',
+  noteReset:(b,d,list)=>b+' belt is not available for '+d+' (Graduation book, Art. 2.1, p. 7). Pick one of: '+list+'.',
+  noteBelts:(d,n)=>'Only the belts valid for '+d+' are listed ('+n+').',
   ruleLbl:(id,n)=>(id.indexOf('gcg-')===0?'GCG ':'')+n
 };
 
 /* ===== My Division — engine (same in EN and PT; strings in MD_UI) ===== */
-const MD_BELTS=['white','blue','purple','brown','black','other'];
+const MD_BELTS=['white','grey','yellow','orange','green','blue','purple','brown','black'];
+const MD_KID=['grey','yellow','orange','green'];
+/* Belt minimum/maximum ages — IBJJF General System of Graduation (June 2026), Art. 2.1.1 / 2.1.2, p. 7 (belt chart p. 8) */
+const MD_GRAD={
+  min:{white:0,grey:4,yellow:7,orange:10,green:13,blue:16,purple:16,brown:18,black:18},
+  max:{grey:15,yellow:15,orange:15,green:15},
+  art:{white:'2.1.1 I / 2.1.2 I',grey:'2.1.1 II',yellow:'2.1.1 III',orange:'2.1.1 IV',green:'2.1.1 V',blue:'2.1.2 II',purple:'2.1.2 III',brown:'2.1.2 IV',black:'2.1.2 V'},
+  page:7,
+  chart:['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18 - 29','30 - 35','36 - 40','41 - 45','46 - 50','51 - 55','56 - 60','61 and up']
+};
+const mdBeltOk=(d,b)=>!!d&&MD_GRAD.min[b]!==undefined&&d.age>=MD_GRAD.min[b]&&(MD_GRAD.max[b]===undefined||d.age<=MD_GRAD.max[b]);
+const mdBeltsFor=d=>MD_BELTS.filter(b=>mdBeltOk(d,b));
+const mdDivsFor=b=>qaModel().div.filter(d=>mdBeltOk(d,b));
+const gradRef=(art,extra)=>({l:MD_UI.gradShort+' '+art+' · '+MD_UI.pg+' '+(extra||MD_GRAD.page),src:true});
 const mdNorm=s=>qnz(s).replace(/ (iii|ii|i)$/,(m,r)=>' '+({i:1,ii:2,iii:3})[r]).replace(/ /g,'-');
 const mdSlug=d=>mdNorm(qaDName(d));
-const mdBeltLabel=b=>b==='other'?MD_UI.beltOther:QA_UI.beltName[b];
+const mdBeltLabel=b=>MD_UI.belts[b];
 function mdDiv(slug){ const s=mdNorm(slug||''); return qaModel().div.filter(d=>mdSlug(d)===s)[0]||null }
-function mdBeltKey(s){ s=qnz(s||''); for(let i=0;i<MD_BELTS.length;i++){ const b=MD_BELTS[i]; if(s===b||(QA_UI.beltName[b]&&qnz(QA_UI.beltName[b])===s))return b } return null }
+function mdBeltKey(s){ s=qnz(s||''); for(let i=0;i<MD_BELTS.length;i++){ const b=MD_BELTS[i]; if(s===b||qnz(MD_UI.belts[b])===s)return b } return null }
 function mdParseHash(h){
   const o={div:null,belt:null,nogi:false}; String(h).split('&').slice(1).forEach(p=>{ const k=p.indexOf('='); if(k<0)return; const key=p.slice(0,k), v=p.slice(k+1);
     if(key==='div')o.div=mdDiv(v); else if(key==='belt')o.belt=mdBeltKey(v); else if(key==='mode')o.nogi=/^no/i.test(v) });
+  if(o.div&&o.belt&&!mdBeltOk(o.div,o.belt)){ o.reset={belt:o.belt,div:o.div}; o.belt=null }
   return o;
 }
 const mdHash=(d,belt,nogi)=>'#my-division'+(d?'&div='+mdSlug(d):'')+(belt?'&belt='+belt:'')+(d||belt?'&mode='+(nogi?'nogi':'gi'):'');
@@ -1888,7 +1934,7 @@ function mdEdge(d,thr){ return !MD_UI.incl&&!d.ge&&d.age===thr }
 
 /* the whole result as plain data (so it can be tested) */
 function mdBuild(d,belt,nogi){
-  const M=qaModel(), I=M.div.indexOf(d)+1, lab=qaDName(d), bl=mdBeltLabel(belt), other=belt==='other';
+  const M=qaModel(), I=M.div.indexOf(d)+1, lab=qaDName(d), bl=mdBeltLabel(belt), kid=MD_KID.indexOf(belt)>=0;
   const saved=QA_RAW; QA_RAW=mdRaw(d,belt,nogi);
   const R={d:d,idx:I,label:lab,belt:belt,nogi:nogi,secs:[]};
   const sec=(k)=>{ const s={k:k,title:MD_UI.secs[k],items:[]}; R.secs.push(s); return s };
@@ -1903,9 +1949,11 @@ function mdBuild(d,belt,nogi){
   it(s,{lead:MD_UI.ageNote,bks:[mdText('gcg-1.1')],refs:[mdRef('gcg-1.1')]});
   { const y=new Date().getFullYear(); R.exBorn=y-d.age; it(s,{lead:MD_UI.ageEx(y,d,y-d.age),muted:true,refs:[mdRef('gcg-1.1')]}) }
   if(d.ge)it(s,{lead:MD_UI.minAge,bks:[mdText('gcg-1.2')],refs:[mdRef('gcg-1.2')]});
+  R.chart=MD_GRAD.chart[I-1];
+  it(s,{lead:MD_UI.gradAge(lab,R.chart),bks:MD_UI.gradAgeBk,refs:[gradRef('2.2.1 / 2.2.2')]});
 
   /* ---- 2. time ---- */
-  s=sec('time'); const x=qaDurRow(d,other?null:belt); let minutes=null;
+  s=sec('time'); const x=qaDurRow(d,kid?null:belt); let minutes=null;
   const t13=mdRef('gcg-1.3','',"&trow="+I+"&tcol=3");
   if(x.txt){ const tt=qmin(x.one?x.one.t:x.txt); minutes=parseInt((String(tt).match(/\d+/)||[])[0],10); R.timeTxt=tt;
     it(s,{lead:MD_UI.timeLead(lab+(x.one?' · '+bl:''),tt),strong:true,refs:[t13]});
@@ -1917,7 +1965,7 @@ function mdBuild(d,belt,nogi){
 
   /* ---- 3. illegal moves ---- */
   s=sec('ill'); let cols=[];
-  if(!(d.ge&&other))cols=qaColsFor({belt:other?'kid':belt,nogi:nogi},{rows:[d]});
+  if(!(d.ge&&kid))cols=qaColsFor({belt:kid?'kid':belt,nogi:nogi},{rows:[d]});
   R.cols=cols; const col=cols.length===1?cols[0]:null; R.col=col; R.illegal=[]; R.notListed=[];
   if(col){
     const head=M.cols[col-1].head; R.colHead=head;
@@ -1933,7 +1981,7 @@ function mdBuild(d,belt,nogi){
     if(R.illegal.indexOf(11)>=0){ let st=null; mdBlocks('rb-6.2.3').forEach(b=>{ if((b[0]==='p'||b[0]==='n')&&/\*\*\s/.test(b[1])&&!st)st=b[1].slice(b[1].indexOf('**')) });
       if(st)it(s,{lead:MD_UI.illStar,bks:[st],refs:[mdRef('rb-6.2.3','(**)','&t=table&row=11&col='+col)]}) }
     if(R.notListed.length)it(s,{lead:MD_UI.illOthers(R.notListed.length),muted:true,refs:[mdRef('gcg-7.1')]});
-  } else it(s,{lead:other&&d.ge?MD_UI.eligOtherAdult:MD_UI.colUnres,cls:'md-warn',refs:[mdRef('rb-6.2.3','(M)','&t=table')]});
+  } else it(s,{lead:MD_UI.colUnres,cls:'md-warn',refs:[mdRef('rb-6.2.3','(M)','&t=table')]});
 
   /* ---- 4. age / belt specific ---- */
   s=sec('spec'); const na=[];
@@ -1966,7 +2014,7 @@ function mdBuild(d,belt,nogi){
     if(d.fam===5&&belt==='black'){ R.adultBlack=true; it(s,{lead:MD_UI.adultBlack,bks:[mdText('rb-8.1.5')],refs:[mdRef('rb-8.1.5')]}) }
   } else {
     const ps=mdBlocks('rb-8.1.16','p'); const nn=mdBlocks('rb-8.1.16','n');
-    it(s,{lead:MD_UI.ng116+' '+MD_UI.ngShirt(other?null:bl),bks:[ps[0]?ps[0][1]:null].filter(Boolean),refs:[mdRef('rb-8.1.16')]});
+    it(s,{lead:MD_UI.ng116+' '+MD_UI.ngShirt(bl),bks:[ps[0]?ps[0][1]:null].filter(Boolean),refs:[mdRef('rb-8.1.16')]});
     if(belt==='black'&&nn[0]){ R.ngBlack=true; it(s,{lead:MD_UI.ngBlack,bks:[nn[0][1]],refs:[mdRef('rb-8.1.16')]}) }
     it(s,{lead:MD_UI.ngNoteAll,muted:true,refs:[mdRef('rb-8.1.16')]});
     it(s,{lead:MD_UI.ngNoGiNot,muted:true,refs:[mdRef('rb-8.1.3')]});
@@ -1984,11 +2032,15 @@ function mdBuild(d,belt,nogi){
   { const bks=[mdText('rb-8.3.1'),mdText('rb-8.3.3')]; if(!qaHasText(QA_UI.tolRx)){ R.noTol=true; bks.push(MD_UI.wiNoTol) }
     it(s,{lead:MD_UI.wiLead,bks:bks,refs:[mdRef('rb-8.3.1'),mdRef('rb-8.3.3')]}) }
 
-  /* ---- 7. belt eligibility note ---- */
-  s=sec('elig');
-  it(s,{lead:MD_UI.eligNone(lab,bl),bks:[mdText('gcg-5.8'),mdText('gcg-5.9')],refs:[mdRef('gcg-5.8'),mdRef('gcg-5.9')]});
-  if(other&&!d.ge)it(s,{lead:MD_UI.eligOther,refs:[mdRef('gcg-1.3'),mdRef('rb-6.2.3','(M)')]});
-  if(belt!=='white'&&!other&&!d.ge&&d.age<18){ R.eligWarn=true; it(s,{lead:MD_UI.eligWarn(lab,bl),cls:'md-warn',refs:[mdRef('gcg-5.8'),mdRef('gcg-5.9'),mdRef('gcg-7.1')]}) }
+  /* ---- 7. belt for this age (Graduation book) ---- */
+  s=sec('elig'); R.valid=mdBeltsFor(d);
+  it(s,{lead:MD_UI.validLead(lab,ageTxt,R.valid.map(mdBeltLabel).join(', ')),strong:true,refs:[gradRef('2.1.1 / 2.1.2')]});
+  { const g=MD_UI.gq[belt]; it(s,{lead:MD_UI.beltRuleLead(bl),bks:MD_UI.gradQ(g),refs:[gradRef(MD_GRAD.art[belt])]}) }
+  R.black18=(belt==='black'&&d.age===18&&d.ge&&d.fam===5);
+  if(belt==='black'&&d.fam===5)it(s,{lead:MD_UI.black18,cls:'md-warn',bks:MD_UI.gradQ(MD_UI.gq.blackNote),refs:[gradRef('2.1.2 V'),gradRef('3.1.3',9)]});
+  if(d.age===16&&!d.ge){ R.j1=true; it(s,{lead:MD_UI.turn16,bks:MD_UI.gradQ(MD_UI.gq.turn16),refs:[gradRef('2.2.3',8)]}) }
+  it(s,{lead:MD_UI.compLead,bks:[mdText('gcg-5.8'),mdText('gcg-5.9')],refs:[mdRef('gcg-5.8'),mdRef('gcg-5.9')]});
+  if(d.fam===6)it(s,{lead:MD_UI.redNote,muted:true,bks:MD_UI.gradQ(MD_UI.gq.red),refs:[gradRef('2.1.2 VI–VIII')]});
   QA_RAW=saved; return R;
 }
 
@@ -2003,7 +2055,7 @@ function mdItemNode(o){
   li.append(el('div',{class:'md-lead'},o.lead));
   if(o.moves){ const ol=el('ol',{class:'md-moves'}); o.moves.forEach(m=>{ const a=el('a',{href:m.h},el('b',null,'#'+m.n),' '+m.name); ol.append(el('li',null,a)) }); li.append(ol) }
   [o.sub,o.bks].forEach((arr,k)=>{ if(arr&&arr.length){ const ul=el('ul',{class:'md-bk'+(k?'':' md-sub')}); arr.forEach(t=>ul.append(el('li',null,t))); li.append(ul) } });
-  if(o.refs&&o.refs.length){ const rf=el('div',{class:'md-rf'}); o.refs.forEach(r=>rf.append(el('a',{class:'md-go',href:r.h,title:MD_UI.go+' '+r.l},(r.t?r.t:MD_UI.go+' '+r.l)+' →'))); li.append(rf) }
+  if(o.refs&&o.refs.length){ const rf=el('div',{class:'md-rf'}); o.refs.forEach(r=>rf.append(r.src?el('span',{class:'md-go md-src',title:MD_UI.gradName},'📘 '+r.l):el('a',{class:'md-go',href:r.h,title:MD_UI.go+' '+r.l},(r.t?r.t:MD_UI.go+' '+r.l)+' →'))); li.append(rf) }
   return li;
 }
 function mdResultNode(R){
@@ -2020,31 +2072,43 @@ function mdResultNode(R){
 function mdActive(on){ ['navMyDiv','sideMyDiv'].forEach(id=>{ const a=document.getElementById(id); if(a)a.classList.toggle('on',on) }) }
 function myDivPage(h){
   const st=mdParseHash(h); const M=qaModel(); let selD=st.div, selB=st.belt, nogi=st.nogi;
-  const out=el('div',{id:'mdOut'});
+  const out=el('div',{id:'mdOut'}); const note=el('div',{id:'mdNote',class:'md-note','aria-live':'polite'});
   const sd=el('select',{id:'mdDiv','aria-label':MD_UI.selDiv}); sd.append(el('option',{value:''},MD_UI.ph));
   let grp=null,gf=null; M.div.forEach(d=>{ if(gf!==d.fam||!grp){ gf=d.fam; grp=el('optgroup',{label:qtitle(d.base)}); sd.append(grp) } grp.append(el('option',{value:mdSlug(d)},qaDName(d)+' · '+(d.ge?MD_UI.ageGe(d.age):MD_UI.ageEq(d.age)))) });
-  const sb=el('select',{id:'mdBelt','aria-label':MD_UI.selBelt}); sb.append(el('option',{value:''},MD_UI.ph)); MD_BELTS.forEach(b=>sb.append(el('option',{value:b},mdBeltLabel(b))));
+  const sb=el('select',{id:'mdBelt','aria-label':MD_UI.selBelt});
   const bGi=el('button',{type:'button',id:'mdGi',class:'md-seg'},MD_UI.gi), bNo=el('button',{type:'button',id:'mdNoGi',class:'md-seg'},MD_UI.nogi);
   const syncSeg=()=>{ bGi.classList.toggle('on',!nogi); bNo.classList.toggle('on',nogi); bGi.setAttribute('aria-pressed',String(!nogi)); bNo.setAttribute('aria-pressed',String(nogi)) };
-  const update=(push)=>{ const dv=sd.value?mdDiv(sd.value):null; selD=dv; selB=sb.value||null; syncSeg();
+  /* belt list = only the belts valid for the chosen division (Graduation book Art. 2); division options not valid for a chosen belt are disabled while no division is chosen */
+  const fillBelts=()=>{ const list=selD?mdBeltsFor(selD):MD_BELTS; sb.innerHTML=''; sb.append(el('option',{value:''},MD_UI.ph)); list.forEach(b=>sb.append(el('option',{value:b},mdBeltLabel(b)))); sb.value=selB&&list.indexOf(selB)>=0?selB:'' };
+  const fillDivs=()=>{ [].forEach.call(sd.querySelectorAll('option[value]:not([value=""])'),o=>{ const d=mdDiv(o.value); o.disabled=!!(selB&&!selD&&!mdBeltOk(d,selB)) }) };
+  const setNote=(msg,warn)=>{ note.innerHTML=''; note.className='md-note'+(warn?' md-nw':''); if(msg)note.append(msg) };
+  const update=(src)=>{ const dv=sd.value?mdDiv(sd.value):null; const prevB=selB; selD=dv; selB=sb.value||null;
+    let msg=null,warn=false;
+    if(selD&&selB&&!mdBeltOk(selD,selB)){ msg=MD_UI.noteReset(mdBeltLabel(selB),qaDName(selD),mdBeltsFor(selD).map(mdBeltLabel).join(', ')); warn=true; selB=null }
+    if(selD&&!msg)msg=MD_UI.noteBelts(qaDName(selD),mdBeltsFor(selD).map(mdBeltLabel).join(', '));
+    fillBelts(); fillDivs(); syncSeg(); setNote(msg,warn);
     histReplace(mdHash(selD,selB,nogi)); out.innerHTML='';
     if(selD&&selB&&innerWidth<=900)setTimeout(()=>{ const t=out.getBoundingClientRect().top; if(t>innerHeight*0.55)window.scrollBy({top:t-80,behavior:'smooth'}) },60);
     if(selD&&selB)out.append(mdResultNode(mdBuild(selD,selB,nogi))); else out.append(el('div',{class:'note md-empty'},MD_UI.empty)) };
-  sd.addEventListener('change',()=>update()); sb.addEventListener('change',()=>update());
+  sd.addEventListener('change',()=>{ const nd=sd.value?mdDiv(sd.value):null; if(nd&&sb.value&&!mdBeltOk(nd,sb.value)){ const ob=sb.value; selD=nd; fillBelts(); selB=null; const msg=MD_UI.noteReset(mdBeltLabel(ob),qaDName(nd),mdBeltsFor(nd).map(mdBeltLabel).join(', ')); update(); setNote(msg,true); return } update() });
+  sb.addEventListener('change',()=>update());
   bGi.addEventListener('click',()=>{ nogi=false; update() }); bNo.addEventListener('click',()=>{ nogi=true; update() });
-  if(selD)sd.value=mdSlug(selD); if(selB)sb.value=selB;
+  if(selD)sd.value=mdSlug(selD); fillBelts(); if(selB)sb.value=selB; fillDivs();
   const lab=(t,f)=>el('label',{class:'md-f','for':f},el('span',null,t));
+  const clr=el('button',{type:'button',class:'md-clear',id:'mdClear'},MD_UI.clear); clr.addEventListener('click',()=>{ sd.value=''; sb.value=''; selD=null; selB=null; update() });
   const form=el('div',{class:'md-form'},
     el('div',{class:'md-fld'},lab(MD_UI.selDiv,'mdDiv'),sd),el('div',{class:'md-fld'},lab(MD_UI.selBelt,'mdBelt'),sb),
     el('div',{class:'md-fld md-mode'},el('span',{class:'md-fl'},MD_UI.selMode),el('div',{class:'md-segs',role:'group','aria-label':MD_UI.selMode},bGi,bNo)));
   const ex=el('div',{class:'md-ex'},el('b',null,MD_UI.examples+' '));
   MD_UI.exs.forEach(e=>{ const d=mdDiv(e[0]); if(!d)return; ex.append(el('a',{class:'chip',href:mdHash(d,e[1],false)},qaDName(d)+' · '+mdBeltLabel(e[1]))) });
-  mount(setCrumbsFor([{t:MD_UI.nav}]),el('div',{class:'vhead'},el('h2',null,MD_UI.h2)),el('p',{class:'md-intro'},MD_UI.intro),form,el('div',{class:'md-modenote'},MD_UI.modeNote),ex,out,footer());
+  mount(setCrumbsFor([{t:MD_UI.nav}]),el('div',{class:'vhead'},el('h2',null,MD_UI.h2)),el('p',{class:'md-intro'},MD_UI.intro),form,note,el('div',{class:'md-modenote'},MD_UI.modeNote,' ',clr),ex,out,footer());
   syncSeg(); setActive(null); mdActive(true);
+  if(st.reset)setNote(MD_UI.noteReset(mdBeltLabel(st.reset.belt),qaDName(st.reset.div),mdBeltsFor(st.reset.div).map(mdBeltLabel).join(', ')),true);
+  else if(selD)setNote(MD_UI.noteBelts(qaDName(selD),mdBeltsFor(selD).map(mdBeltLabel).join(', ')),false);
   if(selD&&selB)out.append(mdResultNode(mdBuild(selD,selB,nogi))); else out.append(el('div',{class:'note md-empty'},MD_UI.empty));
   document.title=MD_UI.title;
 }
-window.__MYDIV={build:mdBuild,divs:()=>qaModel().div,slug:mdSlug,hash:mdHash,parse:mdParseHash,belts:MD_BELTS,ui:MD_UI};
+window.__MYDIV={build:mdBuild,beltOk:mdBeltOk,beltsFor:mdBeltsFor,grad:MD_GRAD,divs:()=>qaModel().div,slug:mdSlug,hash:mdHash,parse:mdParseHash,belts:MD_BELTS,ui:MD_UI};
 
 buildTree(); route();
 window.__IBJJF = {byId,counts,videoMap,playlist,search};
