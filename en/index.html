@@ -1034,7 +1034,7 @@ const QA_KW = {
     {id:'weighin',  w:1, kw:['weigh in','weighin','weigh ins','weighing','weighed','weigh','weight','weights','scale','scales','tolerance','allowance','kg','kgs','kilos','kilogram*','lb','lbs','pounds','pesagem','pesar','balanca','peso','tolerancia','overweight','over weight','over the limit','weight limit']},
     {id:'points',   w:1, kw:['points','point','score','scoring','scores','scored','worth','how many points','pontos','ponto','pontua*','pontuacao','valem','vale quantos','quantos pontos']},
     {id:'advantage',w:2, kw:['advantage','advantages','advantage point','advantage points','vantagem','vantagens','ponto de vantagem']},
-    {id:'penalties',w:1, kw:['penalty','penalties','penalised','penalized','punishment','punishments','punished','disqualif*','how many penalties','third penalty','second penalty','first penalty','fourth penalty','punicao','punicoes','penalidade','penalidades','desclassific*','desqualific*']},
+    {id:'penalties',w:1, kw:['penalty','penalties','penalised','penalized','punishment','punishments','punished','disqualif*','how many penalties','third penalty','second penalty','first penalty','fourth penalty','fifth penalty','sixth penalty','quarta falta','quinta falta','sexta falta','terceira falta','quarta punicao','quinta punicao','sexta punicao','punicao','punicoes','penalidade','penalidades','desclassific*','desqualific*']},
     {id:'duration', w:1, kw:['how long','duration','match time','match length','time limit','how much time','match duration','minutes','length of the match','length of a match','how many minutes','regulation time','fight time','fight length','tempo de luta','tempo da luta','duracao','quanto tempo','tempo regulamentar','minutos','tempo de combate','quantos minutos']},
     {id:'agediv',   w:1, kw:['age division','age divisions','age group','age groups','age category','age categories','which division','what division','what category','which category','born in','how old','birth year','year of birth','minimum age','age limit','age range','what age','idade','faixa etaria','categoria de idade','categorias de idade','em que categoria','qual categoria','ano de nascimento','nasci em','quantos anos','anos tem','qual a idade','idade minima','divisoes','divisions','categories','categorias']},
     {id:'gestures', w:6, kw:['gesture','gestures','signal','signals','referee sign','referee signs','hand signal','hand signals','verbal command','verbal commands','referee command','referee commands','sinal','sinais','gesto','gestos','comando','comandos','sinal do arbitro','sinais do arbitro']},
@@ -1538,6 +1538,7 @@ function qaRest(P){
   return {card:qaCard('info',QA_UI.dur.restGen,null,body,{actions:[qaBtn(QA_UI.openRule('GCG 1.4'),href,true)],fine:QA_UI.footRule}),go:href,jump:true,verdict:QA_UI.dur.restGen,type:'rest',kind:'info',ft:['rest','descanso']};
 }
 function qaTopic(P,id){
+  if(id==='penalties'){ const pr=mdQaPenalties(P); if(pr)return pr }
   if(id==='points')return qaPoints(P); if(id==='duration')return qaDurations(P); if(id==='agediv')return qaAgeDiv(P); if(id==='gestures')return qaGest(P); if(id==='rest')return qaRest(P);
   const T=QA_TOPIC[id], U=QA_UI.topics[id]; if(!T||!U)return null; const body=[]; let verdict=U.lead||U.t, kind='info', why=null;
   const has=T.q?T.q.some(i=>byId[i]):(T.lines||[]).some(i=>byId[i])||(T.kids&&byId[T.kids]); if(!has)return null;
@@ -1890,6 +1891,16 @@ const MD_UI = {
   selBeltAll:'Choose…', clear:'Clear selection',
   noteReset:(b,d,list)=>b+' belt is not available for '+d+' (Graduation book, Art. 2.1, p. 7). Pick one of: '+list+'.',
   noteBelts:(d,n)=>'Only the belts valid for '+d+' are listed ('+n+').',
+  penKid:(lab)=>'Penalties for '+lab+' — 6-penalty sequence (1st–3rd from 7.2.1; 4th–6th from 7.2.4):',
+  penStd:(lab)=>'Penalties for '+lab+' — 4-penalty sequence (7.2.1):',
+  pen:{titleKid:'Penalty sequence — Mighty Mite 1 to Teen 3 (under-15 divisions)',titleStd:'Penalty sequence — Juvenile 1 and above',
+    vKid:l=>(l?l+': ':'')+'6 penalties — disqualification only on the 6th penalty (7.2.4)',
+    vStd:l=>(l?l+': ':'')+'4 penalties — the 4th penalty is disqualification (7.2.1)',
+    vAsk:'It depends on the age division: 6 penalties in the under-15 divisions (Mighty Mite 1 to Teen 3) and 4 penalties from Juvenile 1 up',
+    askLead:'Choose an age division to see its sequence:',chipQ:n=>'How many penalties in '+n,
+    ast:'In 7.2.1 the 4th-penalty line ends with an asterisk (*); the Rules Book prints no footnote text for it.',
+    pen15:'7.2.4 is worded “under-15-year-old divisions” in this (EN) Rules Book; Teen 3 is age 15, and the PT Rules Book words the same rule “até 15 anos” (up to and including 15). Teen 3 is shown with the 6-penalty sequence.',
+    four:'Rule 1.2.1 mentions disqualification for “accumulation of four penalties” (the referee’s gesture before stopping the fight); 7.2.4 says that in the under-15 divisions disqualification comes only on the sixth penalty. See'},
   ruleLbl:(id,n)=>(id.indexOf('gcg-')===0?'GCG ':'')+n
 };
 
@@ -2007,7 +2018,11 @@ function mdBuild(d,belt,nogi){
   R.pts=Object.keys(grp).map(Number).sort((a,b)=>b-a).map(n=>({n:n,labels:grp[n]}));
   it(s,{lead:MD_UI.ptsLead,bks:R.pts.map(g=>g.n+' '+MD_UI.ptsWord+': '+g.labels.join(', ')),refs:[mdRef('rb-2.5.2','','&trow=1')]});
   it(s,{lead:MD_UI.advLead,bks:[mdText('rb-2.5.3')],refs:[mdRef('rb-2.5.3')]});
-  { const pb=mdBlocks('rb-7.2.1','b').map(b=>b[1]); it(s,{lead:MD_UI.penLead,bks:pb,refs:[mdRef('rb-7.2.1')]}) }
+  { const pk=mdPenKid(d); R.penKid=pk; R.penSteps=mdPenSteps(pk); const D=mdPenData(); const pbks=R.penSteps.slice();
+    it(s,{lead:pk?MD_UI.penKid(lab):MD_UI.penStd(lab),bks:pbks,refs:[mdRef('rb-7.2.1')].concat(pk?[mdRef('rb-7.2.4')]:[])});
+    if(pk)it(s,{lead:MD_UI.pen.four.replace(/\s*(See|Veja)$/,''),muted:true,refs:[mdRef('rb-1.2.1')]});
+    if(D.ast)it(s,{lead:MD_UI.pen.ast,muted:true,refs:[mdRef('rb-7.2.1')]});
+    if(pk&&MD_UI.pen.pen15&&d.age===15)it(s,{lead:MD_UI.pen.pen15,muted:true,refs:[mdRef('rb-7.2.4')]}) }
   it(s,{lead:MD_UI.penNote,muted:true,refs:[mdRef('rb-6.1'),mdRef('rb-6.2.1'),mdRef('rb-6.2.2'),mdRef('rb-6.2.3')]});
   { const bks=[mdText('rb-8.3.1'),mdText('rb-8.3.3')]; if(!qaHasText(QA_UI.tolRx)){ R.noTol=true; bks.push(MD_UI.wiNoTol) }
     it(s,{lead:MD_UI.wiLead,bks:bks,refs:[mdRef('rb-8.3.1'),mdRef('rb-8.3.3')]}) }
@@ -2022,6 +2037,36 @@ function mdBuild(d,belt,nogi){
   it(s,{lead:MD_UI.compLead,bks:[mdText('gcg-5.8'),mdText('gcg-5.9')],refs:[mdRef('gcg-5.8'),mdRef('gcg-5.9')]});
   if(d.fam===6)it(s,{lead:MD_UI.redNote,muted:true,bks:MD_UI.gradQ(MD_UI.gq.red),refs:[gradRef('2.1.2 VI–VIII')]});
   QA_RAW=saved; return R;
+}
+
+/* ===== Penalty sequences: standard (7.2.1) vs divisions up to Teen 3 / Mirim..Infanto-Juvenil 3 (7.2.4) ===== */
+const mdPenKid=d=>!d.ge&&d.age<=15;
+function mdPenData(){
+  const bs=mdBlocks('rb-7.2.1','b').map(b=>b[1]), nb=mdBlocks('rb-7.2.1','n')[0], t4=mdText('rb-7.2.4')||'';
+  const m=/^([\s\S]*?\.)\s+((?:Only|Apenas)[\s\S]*)$/.exec(t4);
+  return {bs:bs,note:nb?nb[1]:null,s4:m?m[1]:t4,s6:m?m[2]:null,ast:/\*\s*$/.test(bs[3]||''),full:t4};
+}
+function mdPenSteps(kid){
+  const D=mdPenData(), out=[D.bs[0],D.bs[1],D.bs[2]];
+  if(D.note)out.push(D.note);
+  if(kid){ out.push('7.2.4 — '+D.s4); if(D.s6)out.push('7.2.4 — '+D.s6) } else out.push(D.bs[3]);
+  return out.filter(Boolean);
+}
+function mdQaPenalties(P){
+  const M=qaModel(), dvs=qaDivsFor(P), U=MD_UI.pen; let kid=null, lab=null;
+  if(dvs.length){ const rows=[]; dvs.forEach(x=>x.rows.forEach(r=>{ if(rows.indexOf(r)<0)rows.push(r) })); const k=rows.filter(mdPenKid).length; kid=k===rows.length?true:(k===0?false:null); lab=dvs.map(x=>x.label).join(' / ') }
+  const D=mdPenData(); const body=[];
+  const seq=(title,k,ids)=>{ const box=el('div',{class:'qa-quote'}); box.append(el('a',{class:'qa-ref',href:qaHref('rb-7.2.1')},k?'7.2.1 + 7.2.4':'7.2.1'),' ',el('span',{class:'qa-qt'},title)); const ul=el('ul',{class:'qa-bl'}); mdPenSteps(k).forEach(t=>ul.append(el('li',null,t))); box.append(ul); return box };
+  if(kid===true)body.push(seq(U.titleKid,true)); else if(kid===false)body.push(seq(U.titleStd,false));
+  else { body.push(seq(U.titleKid,true)); body.push(seq(U.titleStd,false)) }
+  if(D.ast)body.push(el('div',{class:'qa-sm'},U.ast));
+  if(kid!==false){ if(U.pen15)body.push(el('div',{class:'qa-sm'},U.pen15)); body.push(el('div',{class:'qa-sm'},U.four+' ',el('a',{href:qaHref('rb-1.2.1')},'1.2.1'))) }
+  const ul=el('ul',{class:'qa-rows'}); ['rb-7.1','rb-7.2.2','rb-7.3.1'].forEach(i=>{ const l=qaLine(i); if(l)ul.append(l) }); if(ul.childNodes.length)body.push(ul);
+  let verdict, kind='info';
+  if(kid===true)verdict=U.vKid(lab); else if(kid===false)verdict=U.vStd(lab);
+  else { verdict=U.vAsk; const fam={}, items=[]; M.div.forEach(d=>{ if(!fam[d.fam]){ fam[d.fam]=1; items.push({t:qtitle(d.base),q:U.chipQ(qtitle(d.base))}) } }); body.push(qaChipsRow(U.askLead,items)) }
+  const href=qaHref('rb-7.2.1');
+  return {card:qaCard(kind,verdict,null,body,{pills:dvs.length?qaPills(P,dvs):null,actions:[qaBtn(QA_UI.openRule('7.2.1'),href,true),qaBtn(QA_UI.openRule('7.2.4'),qaHref('rb-7.2.4'),false)],fine:QA_UI.footRule}),go:href,jump:kid!==null,verdict:qaStr(verdict),type:'topic',topic:'penalties',kind:kind,ft:['penalty','punições']};
 }
 
 /* ===== My Division — page ===== */
