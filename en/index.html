@@ -258,8 +258,16 @@ html:not(.js) #main{margin-left:0}
 .card h3{margin:0 0 4px;color:var(--navy);font-size:18px;font-weight:700;text-transform:uppercase}
 .card small{color:var(--muted)}
 .card ul{margin:.5em 0 0;padding-left:1.1em;font-size:15px}
-.howto{background:var(--soft);border-radius:4px;padding:6px 20px 12px;margin-top:10px}
-.howto li{margin:.3em 0}
+.howto{background:var(--soft);border-radius:4px;padding:0;margin-top:10px;font-size:13px;line-height:1.4}
+.howto>summary{cursor:pointer;padding:7px 12px;list-style:none;display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.howto>summary::-webkit-details-marker{display:none}
+.howto>summary::before{content:'▸';color:var(--gold,#c9a227);font-size:12px}
+.howto[open]>summary::before{content:'▾'}
+.howto>summary b{font-size:14px}
+.howto .hw-sum{color:#5b6573;font-size:12px}
+.howto ul{margin:0;padding:2px 12px 9px 28px;display:grid;grid-template-columns:1fr 1fr;gap:3px 22px}
+.howto li{margin:0}
+@media(max-width:760px){.howto ul{grid-template-columns:1fr;padding-right:10px}.howto .hw-sum{flex-basis:100%}}
 /* ===== atalhos: Golpes ilegais / quick links ===== */
 .cta{display:flex;align-items:center;gap:16px;margin:18px 0 8px;padding:14px 18px;border:2px solid var(--gold);border-left-width:10px;border-radius:4px;background:var(--bg);color:var(--ink);text-decoration:none;transition:background .2s}
 .cta:hover{background:var(--gold-soft);color:var(--ink);text-decoration:none}
@@ -791,13 +799,13 @@ function homePage(){
   const cards=el('div',{class:'cards'},parts.map(p=>el('a',{class:'card',href:'#'+p.id},
     el('h3',null,el('span',{class:'part-tag'},PART_TAG[p.id]),' ',p.en),el('small',null,'PDF pp. '+p.pages[0]+'–'+p.pages[1]),
     el('ul',null,p.children.map(a=>el('li',null,a.title.replace(/^ARTICLE \d+\s*[–-]\s*/,'Art. '+a.num+' – '))) ))));
-  const how=el('div',{class:'howto'},el('h3',null,'How to use'),el('ul',null,
-    el('li',null,el('b',null,'Index'),' (on the left; ☰ button on mobile): click an article or section to open it; use ▸ to expand sub-items.'),
-    el('li',null,el('b',null,'Search'),' (key ',el('code',null,'/'),'): words or a phrase in quotes; you can also type a number, e.g. ',el('code',null,'4.1.2'),'.'),
-    el('li',null,el('b',null,'Questions'),' (in the search box): type a question in plain words, e.g. ',el('a',{href:'#search='+encodeURIComponent(QA_UI.examples[0])},'“'+QA_UI.examples[0]+'”'),' or ',el('a',{href:'#search='+encodeURIComponent(QA_UI.examples[1])},'“'+QA_UI.examples[1]+'”'),'. A quick-answer card cites the rule and jumps to the rule or table row; normal full-text results stay below it.'),
-    el('li',null,el('b',null,'🔗 Copy link'),': every rule has its own link (URL with #), ready to paste into chats or e-mails.'),
-    el('li',null,el('b',null,'▶ Video tutorial'),': the tutorial video is embedded at the top of its rule/section (youtube-nocookie, loads only when scrolled into view).'),
-    el('li',null,el('b',null,'Illustrations'),': the PDF figures appear right in the text, cropped and already visible (positions, gestures, 3-athlete bracket, uniform gauge, patch map); the illegal-move photos open when you click a move name in the 6.2.3 table.')));
+  const how=el('details',{class:'howto'},el('summary',null,el('b',null,'How to use'),el('span',{class:'hw-sum'},'index · search & questions · My Division · Illegal Moves · videos · copy link')),el('ul',null,
+    el('li',null,el('b',null,'Index'),' (left; ☰ on mobile): click an article or section; ▸ expands sub-items.'),
+    el('li',null,el('b',null,'Search & questions'),' (key ',el('code',null,'/'),'): words, “phrases”, a rule number (',el('code',null,'4.1.2'),') or a plain question, e.g. ',el('a',{href:'#search='+encodeURIComponent(QA_UI.examples[0])},'“'+QA_UI.examples[0]+'”'),'. A quick-answer card cites the rule; normal results stay below.'),
+    el('li',null,el('b',null,'★ My Division'),': pick your age division and belt (gi / no-gi) for match time, illegal moves, uniform, scoring and penalties. ',el('a',{href:'#my-division'},'Open →')),
+    el('li',null,el('b',null,'Illegal Moves'),': the 6.2.3 table with photos, by age/belt division. ',el('a',{href:ILLEGAL_HREF},'Open →')),
+    el('li',null,el('b',null,'▶ Videos'),': tutorials are embedded in their rule/section; all on the ',el('a',{href:'#videos'},'videos page'),'.'),
+    el('li',null,el('b',null,'🔗 Copy link'),': every rule has its own URL (#), ready to paste.')));
   const ovv=videoBox('rb');
   const cta=el('a',{class:'cta',href:ILLEGAL_HREF},el('div',null,el('h3',null,'Illegal Moves'),el('p',null,'Table of the 26 numbered illegal moves and their photos — by age/belt division (6.2.3)')),el('span',{class:'btn small go'},'Open table →'));
   const ctaMd=el('a',{class:'cta cta-md',href:'#my-division'},el('div',null,el('h3',null,MD_UI.homeH),el('p',null,MD_UI.homeP)),el('span',{class:'btn small go'},MD_UI.homeGo)); const ctas=el('div',{class:'ctas'},cta,ctaMd);

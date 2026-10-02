@@ -258,8 +258,16 @@ html:not(.js) #main{margin-left:0}
 .card h3{margin:0 0 4px;color:var(--navy);font-size:18px;font-weight:700;text-transform:uppercase}
 .card small{color:var(--muted)}
 .card ul{margin:.5em 0 0;padding-left:1.1em;font-size:15px}
-.howto{background:var(--soft);border-radius:4px;padding:6px 20px 12px;margin-top:10px}
-.howto li{margin:.3em 0}
+.howto{background:var(--soft);border-radius:4px;padding:0;margin-top:10px;font-size:13px;line-height:1.4}
+.howto>summary{cursor:pointer;padding:7px 12px;list-style:none;display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.howto>summary::-webkit-details-marker{display:none}
+.howto>summary::before{content:'▸';color:var(--gold,#c9a227);font-size:12px}
+.howto[open]>summary::before{content:'▾'}
+.howto>summary b{font-size:14px}
+.howto .hw-sum{color:#5b6573;font-size:12px}
+.howto ul{margin:0;padding:2px 12px 9px 28px;display:grid;grid-template-columns:1fr 1fr;gap:3px 22px}
+.howto li{margin:0}
+@media(max-width:760px){.howto ul{grid-template-columns:1fr;padding-right:10px}.howto .hw-sum{flex-basis:100%}}
 /* ===== atalhos: Golpes ilegais / quick links ===== */
 .cta{display:flex;align-items:center;gap:16px;margin:18px 0 8px;padding:14px 18px;border:2px solid var(--gold);border-left-width:10px;border-radius:4px;background:var(--bg);color:var(--ink);text-decoration:none;transition:background .2s}
 .cta:hover{background:var(--gold-soft);color:var(--ink);text-decoration:none}
@@ -793,13 +801,13 @@ function homePage(){
   const cards=el('div',{class:'cards'},parts.map(p=>el('a',{class:'card',href:'#'+p.id},
     el('h3',null,el('span',{class:'part-tag'},PART_TAG[p.id]),' ',p.en),el('small',null,'PDF pp. '+p.pages[0]+'–'+p.pages[1]),
     el('ul',null,p.children.map(a=>el('li',null,a.title.replace(/^ARTIGO \d+\s*[º°]?\s*[–-]\s*/,'Art. '+a.num+'º – '))) ))));
-  const how=el('div',{class:'howto'},el('h3',null,'Como usar'),el('ul',null,
-    el('li',null,el('b',null,'Índice'),' (à esquerda; botão ☰ no celular): clique num artigo ou seção para abri-lo; use ▸ para expandir os subitens.'),
-    el('li',null,el('b',null,'Busca'),' (tecla ',el('code',null,'/'),'): palavras ou uma frase entre aspas; também dá para digitar um número, p. ex. ',el('code',null,'4.1.2'),'.'),
-    el('li',null,el('b',null,'Perguntas'),' (na caixa de busca): digite uma pergunta em linguagem comum, p. ex. ',el('a',{href:'#search='+encodeURIComponent(QA_UI.examples[0])},'“'+QA_UI.examples[0]+'”'),' ou ',el('a',{href:'#search='+encodeURIComponent(QA_UI.examples[1])},'“'+QA_UI.examples[1]+'”'),'. Um cartão de resposta rápida cita a regra e leva até a regra ou à linha da tabela; os resultados normais da busca continuam abaixo dele.'),
-    el('li',null,el('b',null,'🔗 Copiar link'),': cada regra tem seu próprio link (URL com #), pronto para colar em conversas ou e-mails.'),
-    el('li',null,el('b',null,'▶ Vídeo tutorial'),': o vídeo (em inglês) fica incorporado no topo da regra/seção correspondente (youtube-nocookie, carrega só ao rolar até ele).'),
-    el('li',null,el('b',null,'Ilustrações'),': as figuras do PDF aparecem no próprio texto, recortadas e já visíveis (posições, gestos, chave de 3 atletas, medidor de kimono, mapa de patches); as fotos dos golpes ilegais abrem ao clicar no nome do golpe na tabela do 6.2.3.')));
+  const how=el('details',{class:'howto'},el('summary',null,el('b',null,'Como usar'),el('span',{class:'hw-sum'},'índice · busca e perguntas · Minha categoria · Golpes ilegais · vídeos · copiar link')),el('ul',null,
+    el('li',null,el('b',null,'Índice'),' (à esquerda; ☰ no celular): clique num artigo ou seção; ▸ expande os subitens.'),
+    el('li',null,el('b',null,'Busca e perguntas'),' (tecla ',el('code',null,'/'),'): palavras, “frases”, um número de regra (',el('code',null,'4.1.2'),') ou uma pergunta em linguagem comum, p. ex. ',el('a',{href:'#search='+encodeURIComponent(QA_UI.examples[0])},'“'+QA_UI.examples[0]+'”'),'. Um cartão de resposta rápida cita a regra; os resultados normais continuam abaixo.'),
+    el('li',null,el('b',null,'★ Minha categoria'),': escolha a categoria de idade e a faixa (com / sem kimono) para ver tempo de luta, golpes ilegais, uniforme, pontuação e punições. ',el('a',{href:'#my-division'},'Abrir →')),
+    el('li',null,el('b',null,'Golpes ilegais'),': a tabela do 6.2.3 com fotos, por categoria de idade/faixa. ',el('a',{href:ILLEGAL_HREF},'Abrir →')),
+    el('li',null,el('b',null,'▶ Vídeos'),' (em inglês): tutoriais incorporados na regra/seção; todos na ',el('a',{href:'#videos'},'página de vídeos'),'.'),
+    el('li',null,el('b',null,'🔗 Copiar link'),': cada regra tem seu próprio link (#), pronto para colar.')));
   const ovv=videoBox('rb');
   const cta=el('a',{class:'cta',href:ILLEGAL_HREF},el('div',null,el('h3',null,'Golpes ilegais'),el('p',null,'Tabela dos 26 golpes ilegais numerados e suas fotos — por categoria de idade/faixa (6.2.3)')),el('span',{class:'btn small go'},'Abrir tabela →'));
   const ctaMd=el('a',{class:'cta cta-md',href:'#my-division'},el('div',null,el('h3',null,MD_UI.homeH),el('p',null,MD_UI.homeP)),el('span',{class:'btn small go'},MD_UI.homeGo)); const ctas=el('div',{class:'ctas'},cta,ctaMd);
