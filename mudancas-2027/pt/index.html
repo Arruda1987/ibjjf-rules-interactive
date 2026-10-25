@@ -698,7 +698,7 @@ ${it.prog?`<p class="prognote">${L.progb}</p><div class="cols"><div class="col p
 <div class="col a"><h3>${L.after}</h3>${a}</div></div>`}
 ${it.who?`<p class="who"><b>${L.who}:</b> ${esc(it.who)}</p>`:''}
 ${it.n===8?`<figure class="fig"><img src="../img/gesto_acalmar.jpg" alt="${L.gest}" loading="lazy"><figcaption>${L.gest}</figcaption></figure>`:''}
-${(it.n===1||it.n===2||it.n===4||it.n===5||it.n===6)?`<figure class="fig vid"><div class="vwrap"><video src="../img/item${it.n}_video_pt.mp4" poster="../img/item${it.n}_poster_pt.jpg" controls playsinline muted loop preload="metadata" aria-label="${L.vid}"></video></div><figcaption>▶ ${L.vid}</figcaption></figure>`:''}
+${(it.n===1||it.n===2||it.n===4||it.n===5||it.n===6)?`<figure class="fig vid"><div class="vwrap"><video src="../img/item${it.n}_video_pt${it.n===2?'_v6':''}.mp4" poster="../img/item${it.n}_poster_pt${it.n===2?'_v6':''}.jpg" controls playsinline muted loop preload="metadata" aria-label="${L.vid}"></video></div><figcaption>▶ ${L.vid}</figcaption></figure>`:''}
 </div>`;
 if(terms.length)el.querySelectorAll('.col,.sum,.who,h2').forEach(n=>hl(n,terms));
 box.appendChild(el)}
