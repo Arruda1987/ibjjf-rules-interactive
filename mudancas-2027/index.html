@@ -1,0 +1,34 @@
+<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>IBJJF — Mudanças 2027 / Rule Changes 2027</title>
+<style>html,body{margin:0;height:100%;font-family:system-ui,sans-serif;background:#0b1e3a;color:#fff}
+#gate{display:flex;min-height:100%;align-items:center;justify-content:center}
+.box{background:#132b52;padding:28px;border-radius:12px;max-width:360px;width:90%;text-align:center}
+input,select,button{width:100%;box-sizing:border-box;padding:12px;margin-top:10px;border-radius:8px;border:0;font-size:16px}
+input{text-transform:uppercase;letter-spacing:2px;text-align:center}button{background:#faab19;font-weight:700;cursor:pointer}
+#msg{min-height:20px;margin-top:10px;color:#ffb4b4;font-size:14px}#view{display:none;border:0;width:100%;height:100%}
+#bar{display:none;position:fixed;top:0;left:0;right:0;background:#faab19;color:#000;font:12px sans-serif;text-align:center;padding:3px;z-index:9}</style></head>
+<body><div id="gate"><div class="box"><h2>Mudanças 2027 / Rule Changes 2027</h2>
+<p style="font-size:14px;opacity:.8">Digite seu código de acesso (uso único).<br>Enter your one-time access code.</p>
+<input id="code" placeholder="XXXX-XXXX-XXXX" autocomplete="off">
+<button id="go">Abrir / Open</button><div id="msg"></div></div></div>
+<div id="bar"></div><iframe id="view" sandbox="allow-scripts allow-same-origin"></iframe>
+<script>
+const FN="https://zdiwjvjceveclqsvgtmc.supabase.co/functions/v1/mudancas-access";
+const ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpkaXdqdmpjZXZlY2xxc3ZndG1jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjE5MjIsImV4cCI6MjEwMjczNzkyMn0.lASlS07W02OImYrnWP0IMaD6D-rMnl1OzSBVa0IjeNE"; // public anon key only — never the service role
+const $=id=>document.getElementById(id);
+$("go").onclick=async()=>{
+  $("msg").textContent="…";
+  try{
+    const r=await fetch(FN,{method:"POST",headers:{"content-type":"application/json",apikey:ANON,authorization:"Bearer "+ANON},
+      body:JSON.stringify({code:$("code").value})});
+    const j=await r.json();
+    if(!r.ok){$("msg").textContent=j.error==="used"?"Código já utilizado ou expirado. / Code already used or expired.":"Código inválido. / Invalid code.";return;}
+    $("gate").style.display="none";const v=$("view");v.style.display="block";v.srcdoc=j.html;
+    const end=new Date(j.expires_at);$("bar").style.display="block";
+    const t=setInterval(()=>{const s=Math.max(0,Math.round((end-Date.now())/1000));
+      $("bar").textContent=`Acesso expira em / Access expires in ${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
+      if(!s){clearInterval(t);v.srcdoc="";v.style.display="none";$("bar").textContent="Acesso expirado / Access expired";}},1000);
+  }catch(e){$("msg").textContent="Erro de conexão. / Connection error.";}
+};
+$("code").addEventListener("keydown",e=>{if(e.key==="Enter")$("go").click()});
+</script></body></html>
