@@ -10,20 +10,27 @@ input{text-transform:uppercase;letter-spacing:2px;text-align:center}button{backg
 <body><div id="gate"><div class="box"><h2>Mudanças 2027 / Rule Changes 2027</h2>
 <p style="font-size:14px;opacity:.8">Digite seu código de acesso (uso único).<br>Enter your one-time access code.</p>
 <input id="code" placeholder="XXXX-XXXX-XXXX" autocomplete="off">
+<select id="lang" style="display:none"><option value="pt">Português</option><option value="en">English</option></select>
 <button id="go">Abrir / Open</button><div id="msg"></div></div></div>
 <div id="bar"></div><iframe id="view" sandbox="allow-scripts allow-same-origin"></iframe>
 <script>
 const FN="https://zdiwjvjceveclqsvgtmc.supabase.co/functions/v1/mudancas-access";
 const ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpkaXdqdmpjZXZlY2xxc3ZndG1jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjE5MjIsImV4cCI6MjEwMjczNzkyMn0.lASlS07W02OImYrnWP0IMaD6D-rMnl1OzSBVa0IjeNE"; // public anon key only — never the service role
 const $=id=>document.getElementById(id);
+let LANG=false;
+$("code").addEventListener("input",()=>{LANG=false;$("lang").style.display="none"});
 $("go").onclick=async()=>{
   $("msg").textContent="…";
   try{
     const r=await fetch(FN,{method:"POST",headers:{"content-type":"application/json",apikey:ANON,authorization:"Bearer "+ANON},
-      body:JSON.stringify({code:$("code").value})});
+      body:JSON.stringify(LANG?{code:$("code").value,lang:$("lang").value}:{code:$("code").value})});
     const j=await r.json();
     if(!r.ok){$("msg").textContent=j.error==="used"?"Código já utilizado ou expirado. / Code already used or expired.":"Código inválido. / Invalid code.";return;}
+    if(j.needs_lang){LANG=true;const sel=$("lang");sel.style.display="block";
+      [...sel.options].forEach(o=>o.hidden=!(j.langs||["pt","en"]).includes(o.value));
+      $("msg").textContent="Escolha o idioma e toque em Abrir. / Choose language and tap Open.";return;}
     $("gate").style.display="none";const v=$("view");v.style.display="block";v.srcdoc=j.html;
+    if(!j.expires_at)return; // permanent code: no countdown
     const end=new Date(j.expires_at);$("bar").style.display="block";
     const t=setInterval(()=>{const s=Math.max(0,Math.round((end-Date.now())/1000));
       $("bar").textContent=`Acesso expira em / Access expires in ${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
