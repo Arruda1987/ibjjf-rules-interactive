@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The Crown 2026 — Mudanças de regra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a; --bg2:#121212; --card:#161616; --line:#2a2a2a;
+  --gold:#bd9a3f; --gold2:#e0c36a; --gold-soft:rgba(189,154,63,.14);
+  --ink:#f2f2f2; --muted:#a0a0a0; --before:#3a3a3a; --after:#1c1810;
+  --font:"Roboto Condensed",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.45}
+a{color:var(--gold)}
+header.hero{position:relative;padding:28px 20px 22px;background:
+  radial-gradient(1200px 400px at 50% -10%, rgba(189,154,63,.28), transparent 60%),
+  linear-gradient(180deg,#151515,#0a0a0a);border-bottom:1px solid var(--line);text-align:center}
+header.hero .logos{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+header.hero .logos img.logo{height:110px;width:auto;display:block}
+header.hero .logos img.banner{height:72px;width:auto;display:block;border-radius:4px}
+.badge{display:inline-block;background:var(--gold);color:#111;font-weight:700;letter-spacing:.08em;font-size:12px;padding:5px 10px;border-radius:999px;margin-bottom:10px}
+h1{margin:8px 0 6px;font-size:clamp(22px,4vw,34px);font-weight:700;color:var(--gold2)}
+.sub{margin:0 auto;max-width:720px;color:var(--muted);font-size:15px}
+.lang{position:absolute;top:14px;right:14px}
+.lang a{display:inline-block;border:1px solid var(--gold);color:var(--gold);text-decoration:none;padding:6px 10px;border-radius:6px;font-weight:700;font-size:13px}
+.wrap{max-width:980px;margin:0 auto;padding:18px 16px 60px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
+.toc a{text-decoration:none;background:var(--card);border:1px solid var(--line);color:var(--ink);padding:8px 12px;border-radius:8px;font-size:14px}
+.toc a:hover{border-color:var(--gold);color:var(--gold2)}
+.tools{display:flex;gap:8px;margin:0 0 16px}
+.tools button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit}
+.tools button:hover{border-color:var(--gold);color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 16px;overflow:hidden;scroll-margin-top:16px}
+.card>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:16px 16px 14px}
+.card>summary::-webkit-details-marker{display:none}
+.num{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:var(--gold);color:#111;font-weight:800;display:flex;align-items:center;justify-content:center}
+.card h2{margin:0;font-size:18px;font-weight:700;color:var(--ink)}
+.meta{margin-top:4px;font-size:13px;color:var(--muted)}
+.body{padding:0 16px 18px;border-top:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr} header.hero .logos img.logo{height:88px}}
+.col{border-radius:10px;padding:12px 14px;border:1px solid var(--line);background:#101010}
+.col.before{background:#141414}
+.col.after{background:var(--after);border-color:rgba(189,154,63,.35)}
+.col h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.col p,.sum p,.who p{margin:0;white-space:pre-wrap;font-size:14.5px;color:#e8e8e8}
+.sum,.who{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--gold-soft);border:1px solid rgba(189,154,63,.25)}
+.sum strong,.who strong{display:block;color:var(--gold2);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.fig{margin:14px 0 0}
+.vwrap{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000}
+.vwrap video{width:100%;display:block;max-height:420px;background:#000}
+figcaption{margin-top:6px;font-size:13px;color:var(--muted)}
+.timer{display:flex;gap:12px;justify-content:center;margin:16px 0 4px;flex-wrap:wrap}
+.tbox{min-width:120px;text-align:center;padding:16px 18px;border-radius:12px;border:1px solid var(--line);background:#101010}
+.tbox .v{font-size:42px;font-weight:800;line-height:1;color:#888}
+.tbox.after .v{color:var(--gold2)}
+.tbox .l{margin-top:6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.note{text-align:center;color:var(--muted);font-size:13px;margin:0 0 8px}
+footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="lang"><a href="../en/">EN</a></div>
+  <div class="logos">
+    <img class="logo" src="../img/crown-logo.png" alt="IBJJF The Crown">
+    <img class="banner" src="../img/crown-banner.jpg" alt="The Crown presented by Flo Grappling">
+  </div>
+  <div class="badge">SOMENTE THE CROWN 2026</div>
+  <h1>The Crown 2026 — Mudanças de regra</h1>
+  <p class="sub">Regras especiais deste evento · 8 de novembro de 2026 · Pyramid, Long Beach</p>
+</header>
+<main class="wrap">
+  <div class="tools">
+    <button type="button" id="openAll">Abrir todos</button>
+    <button type="button" id="closeAll">Fechar todos</button>
+  </div>
+  <nav class="toc" aria-label="Mudanças"><a href="#item-1">1. Punição por amarração — 10 segundos (7.3.1)</a><a href="#item-2">2. Puxada dupla para a guarda (6.2.1 C)</a><a href="#item-3">3. Pegada na lapela ou na faixa com a perna envolvida (6.2.1 G)</a></nav>
+  <details class="card" id="item-1" open>
+<summary><div class="num">1</div><div><h2>Punição por amarração — 10 segundos (7.3.1)</h2><div class="meta">todos os atletas.</div></div></summary>
+<div class="body">
+<p class="note">Contagem para amarração</p>
+<div class="timer">
+  <div class="tbox"><div class="v">20</div><div class="l">Antes (Livro de Regras)<br>segundos</div></div>
+  <div class="tbox after"><div class="v">10</div><div class="l">No The Crown 2026<br>segundos</div></div>
+</div>
+<div class="cols"><div class="col before"><h3>Antes (Livro de Regras)</h3><p>7.3.1 As punições por falta de combatividade atenderão à seguinte sequência após o árbitro considerar que um ou os dois atletas estão incorrendo nas situações definidas no item 6.2.1.
+
+• O árbitro contará 20 (vinte) segundos consecutivos e, de acordo com tabela no item 1.4.1, fará o gesto por falta de combatividade, com o comando verbal “Lute”, fazendo referência à punição a ser aplicada ao atleta de acordo com a sequência prevista no item 7.2.</p></div><div class="col after"><h3>No The Crown 2026</h3><p>No The Crown 2026, as punições por falta de combatividade (amarração) atenderão à seguinte sequência após o árbitro considerar que um ou os dois atletas estão incorrendo nas situações definidas no item 6.2.1.
+
+• O árbitro contará 10 (dez) segundos consecutivos e, de acordo com tabela no item 1.4.1, fará o gesto por falta de combatividade, com o comando verbal “Lute”, fazendo referência à punição a ser aplicada ao atleta de acordo com a sequência prevista no item 7.2.</p></div></div>
+<div class="sum"><strong>Em resumo</strong><p>no The Crown 2026, a contagem para a punição por falta de combatividade (amarração) é de 10 (dez) segundos consecutivos, em vez de 20 (vinte) segundos.</p></div>
+<div class="who"><strong>Aplica-se a</strong><p>todos os atletas.</p></div>
+
+</div>
+</details>
+<details class="card" id="item-2" open>
+<summary><div class="num">2</div><div><h2>Puxada dupla para a guarda (6.2.1 C)</h2><div class="meta">todos os atletas.</div></div></summary>
+<div class="body">
+
+<div class="cols"><div class="col before"><h3>Antes (Livro de Regras)</h3><p>6.2.1 C) Quando os dois atletas puxarem para guarda ao mesmo tempo, será iniciada a contagem de 20 segundos e, mesmo que os atletas estejam se movimentando, se ao final desses 20 segundos um dos atletas não tiver ido para cima, não estiver com finalização encaixada ou na iminência de completar movimento passível de pontuação, a luta será paralisada, os dois atletas punidos e a luta será reiniciada em pé.</p></div><div class="col after"><h3>No The Crown 2026</h3><p>6.2.1 C) Quando os dois atletas puxarem para guarda ao mesmo tempo (puxada dupla), será iniciada a contagem de 20 segundos, se ao final desses 20 segundos nenhum dos atletas tiver ido para cima ou pontuado, a luta será paralisada, os dois atletas serão punidos e a luta será reiniciada em pé. Independentemente de haver finalização encaixada ou de uma posição pontuável estar iminente, a luta será paralisada.</p></div></div>
+<div class="sum"><strong>Em resumo</strong><p>se ao final dos 20 segundos nenhum dos atletas tiver ido para cima ou pontuado, a luta é paralisada, os dois são punidos e a luta recomeça em pé – mesmo que haja finalização encaixada ou movimento passível de pontuação iminente.</p></div>
+<div class="who"><strong>Aplica-se a</strong><p>todos os atletas.</p></div>
+<figure class="fig"><div class="vwrap"><video src="../img/item2_video_pt.mp4" poster="../img/item2_poster_pt.jpg" controls playsinline muted loop preload="metadata" aria-label="Demonstração"></video></div><figcaption>▶ Demonstração</figcaption></figure>
+</div>
+</details>
+<details class="card" id="item-3" open>
+<summary><div class="num">3</div><div><h2>Pegada na lapela ou na faixa com a perna envolvida (6.2.1 G)</h2><div class="meta">todos os atletas.</div></div></summary>
+<div class="body">
+
+<div class="cols"><div class="col before"><h3>Antes (Livro de Regras)</h3><p><em>Regra nova neste evento</em></p></div><div class="col after"><h3>No The Crown 2026</h3><p>6.2.1 G) Se um atleta fizer pegada na lapela ou na faixa do oponente e envolver a própria perna em posição de controle, esse atleta terá 20 (vinte) segundos para buscar progredir suas posições dentro da luta antes de receber a penalidade por falta de combatividade, conforme descrito na regra 6.2.1. Se a progressão não for alcançada após 20 (vinte) segundos o atleta receberá uma penalidade, conforme descrito na regra 7.3.1, independentemente da intenção.</p></div></div>
+<div class="sum"><strong>Em resumo</strong><p>se o atleta fizer pegada na lapela ou na faixa do oponente e envolver a própria perna em posição de controle, terá 20 segundos para progredir; se não progredir, recebe punição por falta de combatividade (7.3.1), independentemente da intenção.</p></div>
+<div class="who"><strong>Aplica-se a</strong><p>todos os atletas.</p></div>
+<figure class="fig"><div class="vwrap"><video src="../img/item3_video_pt.mp4" poster="../img/item3_poster_pt.jpg" controls playsinline muted loop preload="metadata" aria-label="Demonstração"></video></div><figcaption>▶ Demonstração</figcaption></figure>
+</div>
+</details>
+  <footer>IBJJF · The Crown 2026 · Documento interno de arbitragem</footer>
+</main>
+<script>
+document.getElementById('openAll').onclick=()=>document.querySelectorAll('details.card').forEach(d=>d.open=true);
+document.getElementById('closeAll').onclick=()=>document.querySelectorAll('details.card').forEach(d=>d.open=false);
+</script>
+</body>
+</html>
