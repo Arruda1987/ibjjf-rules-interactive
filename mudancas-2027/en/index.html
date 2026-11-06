@@ -650,7 +650,7 @@ table.dots{border-collapse:separate;border-spacing:0;width:100%;min-width:560px;
 .dots th+th{border-left:1px solid #2a6aa5}
 .dots col.c{width:62px}.dots col.n{width:34px}.dots col.mv{width:190px}
 .dots td{border-top:1px solid var(--line);background:#fff;text-align:center;vertical-align:middle;padding:5px 3px}
-.dots tr.m:nth-child(4n+3) td{background:#f7f7f7}
+.dots tr.m.z td{background:#f7f7f7}
 .dots td.c{border-left:1px solid var(--line)}
 .dots td.n{font-weight:700;color:var(--navy)}
 .dots th.mv,.dots td.mv{position:sticky;right:0;text-align:left;box-shadow:-3px 0 4px -2px rgba(0,0,0,.2)}
@@ -779,7 +779,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
 const tb=E('table',{class:'dots'}),cg=E('colgroup');for(let i=0;i<6;i++)cg.append(E('col',{class:'c'}));cg.append(E('col',{class:'n'}),E('col',{class:'mv'}));
 const hr=E('tr');H.forEach(h=>hr.append(E('th',null,h)));hr.append(E('th',null,'#'),E('th',{class:'mv'},'Prohibited move'));
 const body=E('tbody');tb.append(cg,E('thead',null,hr),body);
-R.forEach(r=>{const tr=E('tr',{class:'m'});r[0].forEach((x,i)=>tr.append(E('td',{class:'c',title:H[i]},x?E('span',{class:'dot',title:'ILLEGAL — '+H[i]}):null)));
+R.forEach((r,ri)=>{const tr=E('tr',{class:ri%2?'m z':'m'});r[0].forEach((x,i)=>tr.append(E('td',{class:'c',title:H[i]},x?E('span',{class:'dot',title:'ILLEGAL — '+H[i]}):null)));
 const b=E('button',{type:'button',class:'mvb','aria-expanded':'false'},r[2]);tr.append(E('td',{class:'n'},String(r[1])),E('td',{class:'mv'},b));
 b.onclick=()=>{const nx=tr.nextElementSibling;if(b.getAttribute('aria-expanded')==='true'){if(nx&&nx.classList.contains('fp'))nx.remove();b.setAttribute('aria-expanded','false');return}
 const inn=E('div',{class:'fpi'});r[3].forEach((k,i)=>{const s=P+k+'.jpg'+V;inn.append(E('figure',null,E('img',{src:s,alt:'Move '+r[1]+' — '+r[2],loading:'lazy',onclick:()=>openLb(s)}),r[3].length>1?E('div',{class:'fcap'},'IMAGEM '+(i+1)):null))});
