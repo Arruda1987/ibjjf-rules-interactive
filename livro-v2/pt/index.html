@@ -2137,7 +2137,7 @@ const MD_UI = {
     turn16:['No ano em que o atleta completar 16 anos (Juvenil 1) ele deverá ser inserido no sistema de faixa do Artigo 1.2. Ele será promovido para a nova graduação de acordo com a faixa que possui:','Faixa Branca: mantém-se na Faixa Branca;','Faixa Cinza, Amarela, Laranja: torna-se Faixa Azul;','Faixa Verde: torna-se Faixa Azul ou Faixa Roxa de acordo com a decisão do Professor'],
     red:['Faixa Vermelha e Preta: 49 anos ou mais (Masters)','Faixa Vermelha e Branca: 56 anos ou mais (Masters)','Faixa Vermelha: 66 anos ou mais (Masters)']},
   selBeltAll:'Escolher…', clear:'Limpar seleção',
-  noteReset:(b,d,list)=>'A faixa '+b.toLowerCase()+' não está disponível para '+d+(b==='Branca'?' (não existe faixa branca até o Infanto-Juvenil 3)':' (Livro de Graduação, Art. 2.1, pág. 7)')+'. Escolha uma destas: '+list+'.',
+  noteReset:(b,d,list)=>(b==='Branca'?'Faixa branca não compete nas categorias até o Infanto-Juvenil 3. Escolha uma destas: '+list+'.':'A faixa '+b.toLowerCase()+' não está disponível para '+d+' (Livro de Graduação, Art. 2.1, pág. 7). Escolha uma destas: '+list+'.'),
   noteBelts:(d,n)=>'Só aparecem as faixas válidas para '+d+' ('+n+').',
   penKid:(lab)=>'Punições para '+lab+' — sequência de 6 punições (1ª a 3ª pela 7.2.1; 4ª a 6ª pela 7.2.4):',
   penStd:(lab)=>'Punições para '+lab+' — sequência de 4 punições (7.2.1):',

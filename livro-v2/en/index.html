@@ -2143,7 +2143,7 @@ const MD_UI = {
     turn16:['Athletes turning 16 years old (Juvenile 1) in the current year must follow the belt system in Article 1.2. They must be promoted to the new rank which is determined by the previous rank:','White Belt: may remain in White Belt;','Grey Belt, Yellow Belt, Orange Belt: must turn to Blue Belt;','Green Belt: may turn to Blue or Purple Belt according to the Professor’s decision.'],
     red:['Red and Black Belt: 49 years old or older. (Masters)','Red and White Belt: 56 years old or older. (Masters)','Red Belt: 66 years old or older. (Masters)']},
   selBeltAll:'Choose…', clear:'Clear selection',
-  noteReset:(b,d,list)=>b+' belt is not available for '+d+(b==='White'?' (there are no white belts up to Teen 3)':' (Graduation book, Art. 2.1, p. 7)')+'. Pick one of: '+list+'.',
+  noteReset:(b,d,list)=>(b==='White'?'White belts do not compete in divisions up to Teen 3. Pick one of: '+list+'.':b+' belt is not available for '+d+' (Graduation book, Art. 2.1, p. 7). Pick one of: '+list+'.'),
   noteBelts:(d,n)=>'Only the belts valid for '+d+' are listed ('+n+').',
   penKid:(lab)=>'Penalties for '+lab+' — 6-penalty sequence (1st–3rd from 7.2.1; 4th–6th from 7.2.4):',
   penStd:(lab)=>'Penalties for '+lab+' — 4-penalty sequence (7.2.1):',
