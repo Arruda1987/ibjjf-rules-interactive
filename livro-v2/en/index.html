@@ -1343,7 +1343,8 @@ const QA_UI = {
   ageEq:n=>'age '+n, ageGe:n=>'age '+n+' or older', ageRng:(a,b)=>'ages '+a+'–'+b, beltSel:b=>b+' belt',
   foulLead:{ '6.2.2':'This is a Serious Foul (6.2.2). Penalties: 7.2.', '6.2.3':'This is a Severe Foul (6.2.3). Penalty: 7.1.', '6.1':'This is a Disciplinary Penalty situation (6.1). Penalty: 7.1.' },
   vFoul:c=>'Covered by rule '+c+' of the Rules Book — quoted below', seeAlso:'See also',
-  scopeYes:'This applies to the category you described (all age divisions up to and including Teen 3, and white belts in every age division).',
+  scopeYes:'This applies to the division you described: the rule covers all age divisions up to and including Teen 3 (for all belts).',
+  scopeWhite:'This applies to the belt you described: the rule covers white belts in every age division.',
   scopeNoW:'Rule 6.2.3(M) applies only to all age divisions up to and including Teen 3 (for all belts) and to white belts in all age divisions; check that this matches your category.',
   mv:{rnc:'Rear naked choke',otherchoke:'That choke',choke:'Chokes named in the table',guillotine:'Guillotine',ezequiel:'Ezequiel (sleeve) choke',spinalchoke:'Choke with spinal lock',neckcrank:'Neck crank / spinal lock',armtri:'Arm triangle',triangle:'Triangle',omoplata:'Omoplata',footlock:'Straight foot lock',heelhook:'Heel hook',kneebar:'Knee bar',toehold:'Toe hold',calf:'Calf slicer',bicep:'Bicep slicer',wrist:'Wrist lock',reap:'Knee reaping',kneetwist:'Locks twisting the knees',leglock:'Leg locks',slam:'Slam',suplex:'Suplex',scissor:'Scissor takedown',fingers:'Bending fingers backwards',beltthrow:'Belt-grab throw',singleleg:'Single leg with head outside',legsapart:'Legs stretched apart',kidneys:'Lock compressing ribs/kidneys',armlock:'Armbar / armlock',kimura:'Kimura'},
   moveChips:[['Choke','choke'],['Heel hook'],['Knee bar'],['Straight foot lock'],['Slam'],['Omoplata'],['Armbar'],['Kimura'],['Rear naked choke']],
@@ -1649,7 +1650,7 @@ function qaFoul(P,skipMove){
   body.push(el('div',{class:'qa-quote'},el('a',{class:'qa-ref',href:qaHref(f.n)},cite),' ',txt));
   let scope=null;
   if(f.n==='rb-6.2.3'&&f.l==='M'){ const young=dvs.length&&dvs.every(d=>d.rows.every(r=>!r.ge&&r.age<=15)); const white=P.belt==='white';
-    if(young||white)scope=QA_UI.scopeYes; else if(dvs.length||P.belt)scope=QA_UI.scopeNoW; }
+    if(young)scope=QA_UI.scopeYes; else if(white)scope=QA_UI.scopeWhite; else if(dvs.length||P.belt)scope=QA_UI.scopeNoW; }
   if(scope)body.push(el('p',{class:'qa-p'},scope));
   const rest=out.slice(1,3); if(rest.length){ const ul=el('ul',{class:'qa-rows'}); rest.forEach(g=>{ const t=g.l?qaItem(g.n,g.l):byId[g.n].text; ul.append(el('li',null,el('a',{href:qaHref(g.n)},byId[g.n].num+(g.l?'('+g.l+')':'')),' — ',t)) }); body.push(el('div',{class:'qa-sm'},QA_UI.seeAlso)); body.push(ul) }
   const href=qaHref(f.n); const card=qaCard('info',QA_UI.vFoul(cite),lead,body,{pills:qaPills(P,dvs),actions:[qaBtn(QA_UI.openRule(cite),href,true)],fine:QA_UI.otherRules});
@@ -2046,7 +2047,7 @@ const MD_UI = {
   intro:'Choose your age division and your belt. This page lists the rules of the IBJJF Rules Book (v7.0) that apply to that combination, each one with its article number and a link to the rule. Everything shown comes from the Rules Book text and the IBJJF Graduation book (belt ages) only; where the book is silent, the page says so.',
   selDiv:'Age division', selBelt:'Belt', selMode:'Event', gi:'Gi', nogi:'No-Gi', ph:'Choose…', beltOther:'Other (youth belt)',
   modeNote:'In the book, Gi vs No-Gi changes: the Adult brown/black column of table 6.2.3(N) and the uniform rules (8.1.3 vs 8.1.16). Match times are the same (GCG 1.3).',
-  exs:[['pee-wee-2','white'],['adult','blue'],['master-3','black'],['juvenile-1','blue']],
+  exs:[['pee-wee-2','yellow'],['adult','blue'],['master-3','black'],['juvenile-1','blue']],
   examples:'Examples:', empty:'Choose an age division and a belt to see the rules that apply.',
   ageEq:n=>'age '+n, ageGe:n=>'age '+n+'+',
   go:'Go to rule', bookWord:'Book text:',
@@ -2142,7 +2143,7 @@ const MD_UI = {
     turn16:['Athletes turning 16 years old (Juvenile 1) in the current year must follow the belt system in Article 1.2. They must be promoted to the new rank which is determined by the previous rank:','White Belt: may remain in White Belt;','Grey Belt, Yellow Belt, Orange Belt: must turn to Blue Belt;','Green Belt: may turn to Blue or Purple Belt according to the Professor’s decision.'],
     red:['Red and Black Belt: 49 years old or older. (Masters)','Red and White Belt: 56 years old or older. (Masters)','Red Belt: 66 years old or older. (Masters)']},
   selBeltAll:'Choose…', clear:'Clear selection',
-  noteReset:(b,d,list)=>b+' belt is not available for '+d+' (Graduation book, Art. 2.1, p. 7). Pick one of: '+list+'.',
+  noteReset:(b,d,list)=>b+' belt is not available for '+d+(b==='White'?' (there are no white belts up to Teen 3)':' (Graduation book, Art. 2.1, p. 7)')+'. Pick one of: '+list+'.',
   noteBelts:(d,n)=>'Only the belts valid for '+d+' are listed ('+n+').',
   penKid:(lab)=>'Penalties for '+lab+' — 6-penalty sequence (1st–3rd from 7.2.1; 4th–6th from 7.2.4):',
   penStd:(lab)=>'Penalties for '+lab+' — 4-penalty sequence (7.2.1):',
@@ -2162,7 +2163,7 @@ const MD_BELTS=['white','grey','yellow','orange','green','blue','purple','brown'
 const MD_KID=['grey','yellow','orange','green'];
 /* Belt minimum/maximum ages — IBJJF General System of Graduation (June 2026), Art. 2.1.1 / 2.1.2, p. 7 (belt chart p. 8) */
 const MD_GRAD={
-  min:{white:0,grey:4,yellow:7,orange:10,green:13,blue:16,purple:16,brown:18,black:18},
+  min:{white:16,grey:4,yellow:7,orange:10,green:13,blue:16,purple:16,brown:18,black:18},
   max:{grey:15,yellow:15,orange:15,green:15},
   art:{white:'2.1.1 I / 2.1.2 I',grey:'2.1.1 II',yellow:'2.1.1 III',orange:'2.1.1 IV',green:'2.1.1 V',blue:'2.1.2 II',purple:'2.1.2 III',brown:'2.1.2 IV',black:'2.1.2 V'},
   page:7,
